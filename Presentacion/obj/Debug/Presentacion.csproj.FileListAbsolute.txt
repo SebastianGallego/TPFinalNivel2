@@ -1,0 +1,11 @@
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\bin\Debug\Presentacion.exe.config
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\bin\Debug\Presentacion.exe
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\bin\Debug\Presentacion.pdb
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.csproj.AssemblyReference.cache
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.csproj.SuggestedBindingRedirects.cache
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.frmPrincipal.resources
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.Properties.Resources.resources
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.csproj.GenerateResource.cache
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.csproj.CoreCompileInputs.cache
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.exe
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.pdb
