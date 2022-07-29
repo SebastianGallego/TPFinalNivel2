@@ -9,3 +9,5 @@ C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.c
 C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.csproj.CoreCompileInputs.cache
 C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.exe
 C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.pdb
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.frmNuevoItem.resources
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.frmAltaModificacion.resources

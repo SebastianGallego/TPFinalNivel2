@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAltaModificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAltaModificacion.Designer.cs">
+      <DependentUpon>frmAltaModificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNuevoItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNuevoItem.Designer.cs">
+      <DependentUpon>frmNuevoItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +66,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAltaModificacion.resx">
+      <DependentUpon>frmAltaModificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNuevoItem.resx">
+      <DependentUpon>frmNuevoItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>

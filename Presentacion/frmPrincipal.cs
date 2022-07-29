@@ -61,5 +61,28 @@ namespace Presentacion
         {
             this.Close();
         }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAltaModificacion ventana = new frmAltaModificacion();
+            ventana.ShowDialog();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAltaModificacion ventana = new frmAltaModificacion();    
+            ventana.ShowDialog();
+        }
+
+        private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAltaModificacion ventana = new frmAltaModificacion();
+            ventana.ShowDialog();
+        }
     }
 }
