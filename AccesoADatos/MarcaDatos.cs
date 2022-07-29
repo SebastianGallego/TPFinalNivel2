@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccesoADatos
 {
-    internal class MarcasDatos
+    internal class MarcaDatos
     {
     }
 }

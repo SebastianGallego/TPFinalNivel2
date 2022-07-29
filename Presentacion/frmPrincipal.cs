@@ -84,5 +84,11 @@ namespace Presentacion
             frmAltaModificacion ventana = new frmAltaModificacion();
             ventana.ShowDialog();
         }
+
+        private void agrgarCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNuevoItem ventana = new frmNuevoItem();
+            ventana.ShowDialog();
+        }
     }
 }

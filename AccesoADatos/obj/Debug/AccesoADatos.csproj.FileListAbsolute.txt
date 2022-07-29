@@ -1,0 +1,9 @@
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\AccesoADatos\bin\Debug\AccesoADatos.dll
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\AccesoADatos\bin\Debug\AccesoADatos.pdb
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\AccesoADatos\bin\Debug\Entidades.dll
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\AccesoADatos\bin\Debug\Entidades.pdb
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\AccesoADatos\obj\Debug\AccesoADatos.csproj.AssemblyReference.cache
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\AccesoADatos\obj\Debug\AccesoADatos.csproj.CoreCompileInputs.cache
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\AccesoADatos\obj\Debug\AccesoADatos.csproj.CopyComplete
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\AccesoADatos\obj\Debug\AccesoADatos.dll
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\AccesoADatos\obj\Debug\AccesoADatos.pdb

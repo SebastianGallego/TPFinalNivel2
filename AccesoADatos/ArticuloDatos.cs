@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace AccesoADatos
 {
-    internal class ProductosDatos
+    public class ArticuloDatos
     {
+
+       
+
+
+
+
+
     }
 }

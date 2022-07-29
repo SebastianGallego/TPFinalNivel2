@@ -42,7 +42,7 @@ namespace Presentacion
             this.ldbDescripcion = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.Menu = new System.Windows.Forms.MenuStrip();
-            this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ArticulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -139,9 +139,9 @@ namespace Presentacion
             this.lblListadoProductos.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblListadoProductos.Location = new System.Drawing.Point(26, 87);
             this.lblListadoProductos.Name = "lblListadoProductos";
-            this.lblListadoProductos.Size = new System.Drawing.Size(185, 19);
+            this.lblListadoProductos.Size = new System.Drawing.Size(168, 19);
             this.lblListadoProductos.TabIndex = 7;
-            this.lblListadoProductos.Text = "Listado de Productos:";
+            this.lblListadoProductos.Text = "Listado de Artículo:";
             // 
             // ldbDescripcion
             // 
@@ -169,7 +169,7 @@ namespace Presentacion
             // Menu
             // 
             this.Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.productosToolStripMenuItem,
+            this.ArticulosToolStripMenuItem,
             this.filtrarToolStripMenuItem,
             this.agrgarCategoríaToolStripMenuItem,
             this.agregarMarcaToolStripMenuItem,
@@ -181,21 +181,22 @@ namespace Presentacion
             this.Menu.TabIndex = 10;
             this.Menu.Text = "menuStrip1";
             // 
-            // productosToolStripMenuItem
+            // ArticulosToolStripMenuItem
             // 
-            this.productosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ArticulosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.agregarToolStripMenuItem,
             this.modificarToolStripMenuItem,
             this.eliminarToolStripMenuItem});
-            this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.productosToolStripMenuItem.Text = "Productos";
+            this.ArticulosToolStripMenuItem.Name = "ArticulosToolStripMenuItem";
+            this.ArticulosToolStripMenuItem.ShortcutKeyDisplayString = "Artículos";
+            this.ArticulosToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.ArticulosToolStripMenuItem.Text = "Artículos";
             // 
             // agregarToolStripMenuItem
             // 
             this.agregarToolStripMenuItem.Name = "agregarToolStripMenuItem";
             this.agregarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.agregarToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.agregarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.agregarToolStripMenuItem.Text = "Agregar...";
             this.agregarToolStripMenuItem.ToolTipText = "Agregar un Producto a la BD";
             this.agregarToolStripMenuItem.Click += new System.EventHandler(this.agregarToolStripMenuItem_Click);
@@ -204,7 +205,7 @@ namespace Presentacion
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
             this.modificarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modificarToolStripMenuItem.Text = "Modificar...";
             this.modificarToolStripMenuItem.ToolTipText = "Modificar un Producto a la BD";
             this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
@@ -214,7 +215,7 @@ namespace Presentacion
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
             this.eliminarToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.eliminarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar...";
             this.eliminarToolStripMenuItem.ToolTipText = "Eliminar un Producto a la BD";
             // 
@@ -230,6 +231,7 @@ namespace Presentacion
             this.agrgarCategoríaToolStripMenuItem.Name = "agrgarCategoríaToolStripMenuItem";
             this.agrgarCategoríaToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
             this.agrgarCategoríaToolStripMenuItem.Text = "Agregar &Categoria";
+            this.agrgarCategoríaToolStripMenuItem.Click += new System.EventHandler(this.agrgarCategoríaToolStripMenuItem_Click);
             // 
             // agregarMarcaToolStripMenuItem
             // 
@@ -306,7 +308,7 @@ namespace Presentacion
         private System.Windows.Forms.Label ldbDescripcion;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.MenuStrip Menu;
-        private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ArticulosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
