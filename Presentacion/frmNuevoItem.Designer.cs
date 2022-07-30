@@ -35,8 +35,6 @@
             this.lblNuevoItem = new System.Windows.Forms.Label();
             this.txtNuevoItem = new System.Windows.Forms.TextBox();
             this.lblLista = new System.Windows.Forms.Label();
-            this.dgvLista = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCerrar
@@ -63,10 +61,12 @@
             this.btnAceptar.TabIndex = 8;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = false;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // lwItems
             // 
             this.lwItems.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lwItems.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lwItems.ForeColor = System.Drawing.Color.Black;
             this.lwItems.HideSelection = false;
             this.lwItems.Location = new System.Drawing.Point(48, 65);
@@ -74,6 +74,7 @@
             this.lwItems.Size = new System.Drawing.Size(235, 406);
             this.lwItems.TabIndex = 10;
             this.lwItems.UseCompatibleStateImageBehavior = false;
+            this.lwItems.View = System.Windows.Forms.View.List;
             // 
             // lblNuevoItem
             // 
@@ -105,33 +106,26 @@
             this.lblLista.TabIndex = 19;
             this.lblLista.Text = "Listado de Items:";
             // 
-            // dgvLista
-            // 
-            this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLista.Location = new System.Drawing.Point(785, 292);
-            this.dgvLista.Name = "dgvLista";
-            this.dgvLista.Size = new System.Drawing.Size(505, 307);
-            this.dgvLista.TabIndex = 21;
-            // 
             // frmNuevoItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
-            this.ClientSize = new System.Drawing.Size(1526, 862);
-            this.Controls.Add(this.dgvLista);
+            this.ClientSize = new System.Drawing.Size(564, 561);
             this.Controls.Add(this.lblNuevoItem);
             this.Controls.Add(this.txtNuevoItem);
             this.Controls.Add(this.lblLista);
             this.Controls.Add(this.lwItems);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnAceptar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(580, 600);
+            this.MinimumSize = new System.Drawing.Size(580, 600);
             this.Name = "frmNuevoItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Item";
             this.Load += new System.EventHandler(this.frmNuevoItem_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,6 +139,5 @@
         private System.Windows.Forms.Label lblNuevoItem;
         private System.Windows.Forms.TextBox txtNuevoItem;
         private System.Windows.Forms.Label lblLista;
-        private System.Windows.Forms.DataGridView dgvLista;
     }
 }

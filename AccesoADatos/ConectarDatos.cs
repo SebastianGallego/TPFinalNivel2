@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace AccesoADatos
 {
-    public class AccesoDatos
+    public class ConectarDatos
     {
         private SqlConnection conexion;
         private SqlCommand comando;
@@ -20,7 +20,7 @@ namespace AccesoADatos
             get { return lector; }
         }
 
-        public AccesoDatos()
+        public ConectarDatos()
         {
             conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true");
             comando = new SqlCommand();

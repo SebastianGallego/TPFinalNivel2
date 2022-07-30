@@ -85,10 +85,18 @@ namespace Presentacion
             ventana.ShowDialog();
         }
 
-        private void agrgarCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+     
+
+        private void CategoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmNuevoItem ventana = new frmNuevoItem();
-            ventana.ShowDialog();
+           frmNuevoItem categoria = new frmNuevoItem(sender.ToString());
+           categoria.ShowDialog();
+        }
+
+        private void MarcaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNuevoItem marca = new frmNuevoItem(sender.ToString());
+            marca.ShowDialog();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace AccesoADatos
         public List<Categoria> listar()
         {
             List<Categoria> lista = new List<Categoria>();
-            AccesoDatos datos = new AccesoDatos();
+            ConectarDatos datos = new ConectarDatos();
 
             try
             {

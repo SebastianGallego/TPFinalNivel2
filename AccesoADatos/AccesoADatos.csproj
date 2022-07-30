@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccesoDatos.cs" />
+    <Compile Include="ConectarDatos.cs" />
     <Compile Include="CategoriaDatos.cs" />
     <Compile Include="MarcaDatos.cs" />
     <Compile Include="ArticuloDatos.cs" />

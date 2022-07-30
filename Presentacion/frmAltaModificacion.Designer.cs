@@ -200,7 +200,7 @@
             this.comboBox2.Size = new System.Drawing.Size(117, 21);
             this.comboBox2.TabIndex = 3;
             // 
-            // frmAM
+            // frmAltaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,11 +221,12 @@
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.pbImagen);
             this.Controls.Add(this.btnAceptar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 640);
             this.MinimumSize = new System.Drawing.Size(800, 640);
-            this.Name = "frmAM";
+            this.Name = "frmAltaModificacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta de Producto";
             this.Load += new System.EventHandler(this.frmAM_Load);
