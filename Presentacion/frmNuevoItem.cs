@@ -14,9 +14,7 @@ namespace Presentacion
 {
     public partial class frmNuevoItem : Form
     {
-
-
-        private List<Categoria> listaCategoria;
+                   
         private string condicion;
 
         public frmNuevoItem()
@@ -38,58 +36,41 @@ namespace Presentacion
 
         private void frmNuevoItem_Load(object sender, EventArgs e)
         {
+            if (condicion == "Categoria")   //Hizo Clic en Categoria
+                { 
+                actualizarListaCategoria();
+                lblLista.Text = "Listado de Categorias:";
+                lblNuevoItem.Text = "Ingrese Nueva Categoria:";
+    
+                }
+                else                       //Hizo Clic en Marca
+                    {
+                    actualizarListaMarca();
+                    lblLista.Text = "Listado de Marcas:";
+                    lblNuevoItem.Text = "Ingrese Nueva Marca:";
 
-
-            if (condicion == "Categoria")
-                MessageBox.Show("Viene de Categoria");
-            else
-                MessageBox.Show("Viene de Marca");
-
-
-            
-            
-            actualizarLista();
-
+            }
 
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            ConectarDatos datos = new ConectarDatos();
-
-            try
-            {
-                datos.setearConsulta("Insert into categorias (Descripcion) values (@desc) ");
-                datos.setearParametro("@desc", txtNuevoItem.Text); 
-                datos.ejecutarAccion();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error de conexión con la Base de Datos");
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-            txtNuevoItem.Text = "";
-            lwItems.Clear();
-            actualizarLista();
-
-
+            guardarDato();
         }
 
 
-        private void actualizarLista()
+        private void actualizarListaCategoria()
         {
-            CategoriaDatos item = new CategoriaDatos();
+            CategoriaDatos items = new CategoriaDatos();
+            List<Categoria> listaCategoria;
 
             try
             {
-                listaCategoria = item.listar();
+                listaCategoria = items.listar();
 
                 foreach (var categoria in listaCategoria)
                 {
-                    lwItems.Items.Add(categoria.DescripcionCategoria);
+                    lbItems.Items.Add(categoria.DescripcionCategoria);
 
                 }
 
@@ -101,5 +82,136 @@ namespace Presentacion
 
         }
 
+
+        private void actualizarListaMarca()
+        {
+            MarcaDatos items = new MarcaDatos();
+            List<Marca> listaMarca;
+
+
+            try
+            {
+                listaMarca = items.listarMarca();
+
+                foreach (var marca in listaMarca)
+                {
+                    lbItems.Items.Add(marca.DescripcionMarca);
+
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error de conexión con la Base de Datos");
+            }
+
+        }
+
+        private void txtNuevoItem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+                guardarDato();
+
+        }
+
+
+        private void guardarDato()
+        {
+            ConectarDatos datos = new ConectarDatos();
+
+            try
+            {
+                if (condicion == "Categoria")   //Hizo Clic en Categoria
+                {
+                    datos.setearConsulta("Insert into categorias (Descripcion) values (@desc) ");
+                    datos.setearParametro("@desc", txtNuevoItem.Text);
+                    datos.ejecutarAccion();
+                    txtNuevoItem.Text = "";
+                    MessageBox.Show("La nueva Categoria fue guardada con éxito");
+                    lbItems.Items.Clear();
+                    actualizarListaCategoria();
+
+                }
+                else                       //Hizo Clic en Marca
+                {
+                    datos.setearConsulta("Insert into marcas (Descripcion) values (@desc) ");
+                    datos.setearParametro("@desc", txtNuevoItem.Text);
+                    datos.ejecutarAccion();
+                    txtNuevoItem.Text = "";
+                    MessageBox.Show("La nueva Marca fue guardada con éxito");
+                    lbItems.Items.Clear();
+                    actualizarListaMarca();
+
+
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error de conexión con la Base de Datos");
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+     
+
+        private void lbItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtNuevoItem.Text = lbItems.SelectedItem.ToString();
+            btnAceptar.Enabled = false;
+            btnEliminar.Enabled = true;
+            txtNuevoItem.Enabled = false;
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+            ConectarDatos datos = new ConectarDatos();
+
+            try
+            {
+                if (condicion == "Categoria")   //Hizo Clic en Categoria
+                {
+                    datos.setearConsulta("delete into categorias (Descripcion) values (@desc) ");
+                    datos.setearParametro("@desc", txtNuevoItem.Text);
+                    datos.ejecutarAccion();
+                    txtNuevoItem.Text = "";
+                    MessageBox.Show("La nueva Categoria fue guardada con éxito");
+                    lbItems.Items.Clear();
+                    actualizarListaCategoria();
+
+                }
+                else                       //Hizo Clic en Marca
+                {
+                    datos.setearConsulta("delete into marcas (Descripcion) values (@desc) ");
+                    datos.setearParametro("@desc", txtNuevoItem.Text);
+                    datos.ejecutarAccion();
+                    txtNuevoItem.Text = "";
+                    MessageBox.Show("La nueva Marca fue guardada con éxito");
+                    lbItems.Items.Clear();
+                    actualizarListaMarca();
+
+
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error de conexión con la Base de Datos");
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+
+
+
+        }
     }
 }

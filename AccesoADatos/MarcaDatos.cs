@@ -3,10 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades;
 
 namespace AccesoADatos
 {
-    internal class MarcaDatos
+    public class MarcaDatos
     {
+
+        public List<Marca> listarMarca()
+        {
+            List<Marca> lista = new List<Marca>();
+            ConectarDatos datos = new ConectarDatos();
+
+            try
+            {
+                datos.setearConsulta("select id, descripcion from marcas");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Marca aux = new Marca();
+                    aux.Id = (int)datos.Lector["id"];
+                    aux.DescripcionMarca = (string)datos.Lector["Descripcion"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+
+
+
+
+
+        }
     }
 }
