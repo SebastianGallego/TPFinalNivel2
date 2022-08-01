@@ -48,6 +48,14 @@ using Entidades;
 //Funcionalidades:
 
 // -Formulario Principal
+//  Al iniciar carga todo el listado de Articulos.
+//  Al hacer clic en el DataGrid se actualiza la imagen y el detalle del Articulo.
+//  Está formateado el precio con 2 decimales tanto en la grilla como en el listbox.
+//  Los botones Agregar y Modificar llaman al mismo formulario pero con diferente funcionalidad.
+//
+//
+//
+
 
 
 
@@ -143,12 +151,19 @@ namespace Presentacion
         {
 
             ActualizarGrilla();
+            ocultarColumnas();
 
 
         }
 
 
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["Id"].Visible = false;
+            dgvArticulos.Columns["ImagenUrl"].Visible = false;
+            
 
+        }
 
 
 
@@ -159,8 +174,7 @@ namespace Presentacion
             {
                 listaArticulo = datos.listarArticulo();
                 dgvArticulos.DataSource = listaArticulo;
-                //ocultarColumnas();
-                //cargarImagen(listaPokemon[0].UrlImagen);
+                dgvArticulos.Columns["Precio"].DefaultCellStyle.Format = "N2";
             }
             catch (Exception ex)
             {
@@ -168,6 +182,37 @@ namespace Presentacion
             }
         }
 
+       
+
+        private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow != null)
+            {
+                lbDetalles.Items.Clear();
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.ImagenUrl);
+                lbDetalles.Items.Add("Código: " + seleccionado.Codigo);
+                lbDetalles.Items.Add("Nombre: " + seleccionado.Nombre);
+                lbDetalles.Items.Add("Descripción: " + seleccionado.Descripcion);
+
+                lbDetalles.Items.Add("Precio: $ " + Math.Round(seleccionado.Precio, 2));
+
+
+            }
+        }
+
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbImagen.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pbImagen.Load("https://www.trinomusic.com/sites/default/files/default_images/imagen-no-disponible.gif");
+            }
+        }
 
 
 
