@@ -109,6 +109,7 @@ namespace Presentacion
 
         private void txtNuevoItem_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 guardarDato();
 
@@ -119,42 +120,43 @@ namespace Presentacion
         {
             ConectarDatos datos = new ConectarDatos();
 
-            try
+            if (txtNuevoItem.Text != "")
             {
-                if (condicion == "Categoria")   //Hizo Clic en Categoria
+                try
                 {
-                    datos.setearConsulta("Insert into categorias (Descripcion) values (@desc) ");
-                    datos.setearParametro("@desc", txtNuevoItem.Text);
-                    datos.ejecutarAccion();
-                    txtNuevoItem.Text = "";
-                    MessageBox.Show("La nueva Categoria fue guardada con éxito");
-                    lbItems.Items.Clear();
-                    actualizarListaCategoria();
+                    if (condicion == "Categoria")   //Hizo Clic en Categoria
+                    {
+                        datos.setearConsulta("Insert into categorias (Descripcion) values (@desc) ");
+                        datos.setearParametro("@desc", txtNuevoItem.Text);
+                        datos.ejecutarAccion();
+                        txtNuevoItem.Text = "";
+                        MessageBox.Show("La nueva Categoria fue guardada con éxito");
+                        lbItems.Items.Clear();
+                        actualizarListaCategoria();
+
+                    }
+                    else                       //Hizo Clic en Marca
+                    {
+                        datos.setearConsulta("Insert into marcas (Descripcion) values (@desc) ");
+                        datos.setearParametro("@desc", txtNuevoItem.Text);
+                        datos.ejecutarAccion();
+                        txtNuevoItem.Text = "";
+                        MessageBox.Show("La nueva Marca fue guardada con éxito");
+                        lbItems.Items.Clear();
+                        actualizarListaMarca();
+
+                    }
 
                 }
-                else                       //Hizo Clic en Marca
+                catch (Exception)
                 {
-                    datos.setearConsulta("Insert into marcas (Descripcion) values (@desc) ");
-                    datos.setearParametro("@desc", txtNuevoItem.Text);
-                    datos.ejecutarAccion();
-                    txtNuevoItem.Text = "";
-                    MessageBox.Show("La nueva Marca fue guardada con éxito");
-                    lbItems.Items.Clear();
-                    actualizarListaMarca();
-
-
+                    MessageBox.Show("Error de conexión con la Base de Datos");
                 }
-
+                finally
+                {
+                    datos.cerrarConexion();
+                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Error de conexión con la Base de Datos");
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-
         }
 
      
@@ -176,25 +178,24 @@ namespace Presentacion
             {
                 if (condicion == "Categoria")   //Hizo Clic en Categoria
                 {
-                    datos.setearConsulta("delete into categorias (Descripcion) values (@desc) ");
-                    datos.setearParametro("@desc", txtNuevoItem.Text);
+                    datos.setearConsulta("delete from categorias WHERE descripcion = @desc");
+                    datos.setearParametro("@desc", lbItems.SelectedItem.ToString());
                     datos.ejecutarAccion();
                     txtNuevoItem.Text = "";
-                    MessageBox.Show("La nueva Categoria fue guardada con éxito");
+                    MessageBox.Show("La  Categoria fue Eliminada con éxito");
                     lbItems.Items.Clear();
                     actualizarListaCategoria();
 
                 }
                 else                       //Hizo Clic en Marca
                 {
-                    datos.setearConsulta("delete into marcas (Descripcion) values (@desc) ");
-                    datos.setearParametro("@desc", txtNuevoItem.Text);
+                    datos.setearConsulta("delete from marcas WHERE descripcion = @desc");
+                    datos.setearParametro("@desc", lbItems.SelectedItem.ToString());
                     datos.ejecutarAccion();
                     txtNuevoItem.Text = "";
-                    MessageBox.Show("La nueva Marca fue guardada con éxito");
+                    MessageBox.Show("La Marca fue Eliminada con éxito");
                     lbItems.Items.Clear();
                     actualizarListaMarca();
-
 
                 }
 
@@ -207,11 +208,13 @@ namespace Presentacion
             {
                 datos.cerrarConexion();
             }
+            btnEliminar.Enabled = false;
 
+        }
 
-
-
-
+        private void txtNuevoItem_TextChanged(object sender, EventArgs e)
+        {
+            btnAceptar.Enabled = true;
         }
     }
 }

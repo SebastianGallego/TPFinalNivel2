@@ -12,7 +12,7 @@ namespace Entidades
         public int Id { get; set; }
 
         [DisplayName("Código")]
-        public int Codigo { get; set; }
+        public string Codigo { get; set; }
         
         public string Nombre { get; set; }
         
@@ -24,7 +24,7 @@ namespace Entidades
 
         public string ImagenUrl { get; set; }
 
-        public float Precio { get; set; }   
+        public decimal Precio { get; set; }   
 
 
 

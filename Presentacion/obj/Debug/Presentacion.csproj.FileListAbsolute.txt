@@ -16,3 +16,4 @@ C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\bin\Debug\Entidades.dll
 C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\bin\Debug\AccesoADatos.pdb
 C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\bin\Debug\Entidades.pdb
 C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.csproj.CopyComplete
+C:\Dev\MaxiPrograma2\TPFinalNivel2_Gallego\Presentacion\obj\Debug\Presentacion.frmAcercaDe.resources

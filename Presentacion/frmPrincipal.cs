@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccesoADatos;
+using Entidades;
 
 
 //Consigna TP Integrador
@@ -43,6 +45,33 @@ using System.Windows.Forms;
 //Consideraciones: la app debe manejar arquitectura en capas, manejo de excepciones y validaciones cuando corresponda.
 
 
+//Funcionalidades:
+
+// -Formulario Principal
+
+
+
+// -Formulario AltaModificacion
+
+
+
+
+
+// -Formulario NuevoItem
+//  Se utiliza para agregar o quilar elementos de las tablas "Categorias" y "Marcas" 
+//  Muestra el contenido en un ListBox segun de donde viene desde el formulario principal (Categoria ó Marca).
+//  Se puede agregar un Item Nuevo, esta validado que no sea un valor nulo. El alta funciona con el boton "Aceptar" como con enter dentro del Texbox.
+//  El boton eliminar solo esta disponible si hay un Item seleccionado en el listbox.
+//  Cuando se selecciona un Item se deshabilita el boton Aceptar para que no se pueda hacer un Alta.
+
+// -Formulario AcercaDe
+// Muestra informacion de la App. 
+// La etiquieta www.maxiprograma.com funciona como un link a la web.
+// Las imagenes de Correo, Linkedin y Github contiene link a dichas direcciones del desarrollador.
+
+
+
+
 
 
 
@@ -51,6 +80,10 @@ namespace Presentacion
 {
     public partial class frmPrincipal : Form
     {
+
+        private List<Articulo> listaArticulo;
+
+
         public frmPrincipal()
         {
             InitializeComponent();
@@ -98,5 +131,48 @@ namespace Presentacion
             frmNuevoItem marca = new frmNuevoItem(sender.ToString());
             marca.ShowDialog();
         }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAcercaDe ventana = new frmAcercaDe();
+            ventana.ShowDialog();
+        }
+
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+
+            ActualizarGrilla();
+
+
+        }
+
+
+
+
+
+
+        private void ActualizarGrilla()
+        {
+            ArticuloDatos datos = new ArticuloDatos();
+            try
+            {
+                listaArticulo = datos.listarArticulo();
+                dgvArticulos.DataSource = listaArticulo;
+                //ocultarColumnas();
+                //cargarImagen(listaPokemon[0].UrlImagen);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la Conexión con la Base de Datos");
+            }
+        }
+
+
+
+
+
+
+
     }
 }

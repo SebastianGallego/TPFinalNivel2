@@ -54,6 +54,7 @@
             // btnAceptar
             // 
             this.btnAceptar.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnAceptar.Enabled = false;
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAceptar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.Location = new System.Drawing.Point(341, 282);
@@ -83,6 +84,7 @@
             this.txtNuevoItem.Name = "txtNuevoItem";
             this.txtNuevoItem.Size = new System.Drawing.Size(198, 27);
             this.txtNuevoItem.TabIndex = 0;
+            this.txtNuevoItem.TextChanged += new System.EventHandler(this.txtNuevoItem_TextChanged);
             this.txtNuevoItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNuevoItem_KeyPress);
             // 
             // lblLista
