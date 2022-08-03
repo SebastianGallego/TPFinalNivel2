@@ -9,7 +9,7 @@ namespace AccesoADatos
 {
     public  class CategoriaDatos
     {
-        public List<Categoria> listar()
+        public List<Categoria> listarCategoria()
         {
             List<Categoria> lista = new List<Categoria>();
             ConectarDatos datos = new ConectarDatos();

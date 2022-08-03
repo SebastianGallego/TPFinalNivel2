@@ -66,7 +66,7 @@ namespace Presentacion
 
             try
             {
-                listaCategoria = items.listar();
+                listaCategoria = items.listarCategoria();
 
                 foreach (var categoria in listaCategoria)
                 {

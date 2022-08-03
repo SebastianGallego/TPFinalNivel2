@@ -60,6 +60,14 @@ using Entidades;
 
 
 // -Formulario AltaModificacion
+//  
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -91,11 +99,15 @@ namespace Presentacion
 
         private List<Articulo> listaArticulo;
 
+        
 
         public frmPrincipal()
         {
             InitializeComponent();
         }
+
+        
+
 
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -110,20 +122,26 @@ namespace Presentacion
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAltaModificacion ventana = new frmAltaModificacion();
-            ventana.ShowDialog();
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmAltaModificacion modificar = new frmAltaModificacion(seleccionado);
+            modificar.ShowDialog();
+            ActualizarGrilla();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAltaModificacion ventana = new frmAltaModificacion();    
             ventana.ShowDialog();
+            ActualizarGrilla();
         }
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAltaModificacion ventana = new frmAltaModificacion();
             ventana.ShowDialog();
+            ActualizarGrilla();
         }
 
      
@@ -201,18 +219,26 @@ namespace Presentacion
         }
 
 
-        private void cargarImagen(string imagen)
+        private void cargarImagen(string cadenaImagen)
         {
             try
             {
-                pbImagen.Load(imagen);
+                pbImagen.Load(cadenaImagen);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 pbImagen.Load("https://www.trinomusic.com/sites/default/files/default_images/imagen-no-disponible.gif");
             }
         }
 
-        
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmAltaModificacion modificar = new frmAltaModificacion(seleccionado);
+            modificar.ShowDialog();
+            ActualizarGrilla();
+        }
     }
 }

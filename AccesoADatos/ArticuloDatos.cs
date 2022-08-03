@@ -17,8 +17,8 @@ namespace AccesoADatos
 
             try
             {
-                datos.setearConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria,  Precio,ImagenUrl, C.Id IdCategoria, M.Id IdMarca From Articulos A, Categorias C, Marcas M where M.Id = A.Id And C.Id = A.Id");
-                   
+                datos.setearConsulta("Select A.Id, A.IdCategoria, A.IdMarca, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria,  Precio,ImagenUrl, C.Id IdCategoria, M.Id IdMarca From Articulos A, Categorias C, Marcas M where M.Id = A.IdMarca And C.Id = A.IdCategoria");
+
 
                 datos.ejecutarLectura();
 
@@ -40,7 +40,7 @@ namespace AccesoADatos
                     aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Categoria.DescripcionCategoria = (string)datos.Lector["Categoria"];
 
-                    
+
                     lista.Add(aux);
                 }
 
@@ -60,6 +60,65 @@ namespace AccesoADatos
 
 
         }
+
+
+
+        public void agregarArticulo(Articulo Articulo)
+        {
+            ConectarDatos datos = new ConectarDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into Articulos (Codigo, Nombre, Descripcion, idCategoria, idMarca, ImagenUrl,Precio) values (@Codigo, @Nombre, @Descripcion, @idCategoria, @idMarca, @ImagenUrl,@Precio)  ");
+
+                
+                datos.setearParametro("@Codigo", Articulo.Codigo);
+                datos.setearParametro("@Nombre", Articulo.Nombre);
+                datos.setearParametro("@Descripcion", Articulo.Descripcion);
+                datos.setearParametro("@idCategoria", Articulo.Categoria.Id);
+                datos.setearParametro("@idMarca", Articulo.Marca.Id);
+                datos.setearParametro("@ImagenUrl", Articulo.ImagenUrl);
+                datos.setearParametro("@Precio", Articulo.Precio);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
+
+
+        public void modificarArticulo(Articulo Articulo)
+        {
+            ConectarDatos datos = new ConectarDatos();
+
+
+
+
+        }
+
+
+        public void eliminarArticulo(Articulo Articulo)
+        {
+            ConectarDatos datos = new ConectarDatos();
+
+
+
+
+        }
+
+
+
+
+
     }
+
+
 }
 
