@@ -17,7 +17,9 @@ namespace AccesoADatos
 
             try
             {
-                datos.setearConsulta("select * from articulos");
+                datos.setearConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria,  Precio,ImagenUrl, C.Id IdCategoria, M.Id IdMarca From Articulos A, Categorias C, Marcas M where M.Id = A.Id And C.Id = A.Id");
+                   
+
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -30,6 +32,15 @@ namespace AccesoADatos
                     aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
 
+                    aux.Marca = new Marca();
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                    aux.Marca.DescripcionMarca = (string)datos.Lector["Marca"];
+
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                    aux.Categoria.DescripcionCategoria = (string)datos.Lector["Categoria"];
+
+                    
                     lista.Add(aux);
                 }
 

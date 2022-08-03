@@ -73,9 +73,9 @@ using Entidades;
 //  Cuando se selecciona un Item se deshabilita el boton Aceptar para que no se pueda hacer un Alta.
 
 // -Formulario AcercaDe
-// Muestra informacion de la App. 
-// La etiquieta www.maxiprograma.com funciona como un link a la web.
-// Las imagenes de Correo, Linkedin y Github contiene link a dichas direcciones del desarrollador.
+//  Muestra informacion de la App. 
+//  La etiquieta www.maxiprograma.com funciona como un link a la web.
+//  Las imagenes de Correo, Linkedin y Github contiene link a dichas direcciones del desarrollador.
 
 
 
@@ -161,8 +161,6 @@ namespace Presentacion
         {
             dgvArticulos.Columns["Id"].Visible = false;
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
-            
-
         }
 
 
@@ -194,7 +192,8 @@ namespace Presentacion
                 lbDetalles.Items.Add("Código: " + seleccionado.Codigo);
                 lbDetalles.Items.Add("Nombre: " + seleccionado.Nombre);
                 lbDetalles.Items.Add("Descripción: " + seleccionado.Descripcion);
-
+                lbDetalles.Items.Add("Marca: " + seleccionado.Marca);
+                lbDetalles.Items.Add("Categoria: " + seleccionado.Categoria);    
                 lbDetalles.Items.Add("Precio: $ " + Math.Round(seleccionado.Precio, 2));
 
 
@@ -214,10 +213,6 @@ namespace Presentacion
             }
         }
 
-
-
-
-
-
+        
     }
 }

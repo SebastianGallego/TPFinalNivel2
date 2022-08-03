@@ -128,7 +128,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
-            this.ClientSize = new System.Drawing.Size(564, 561);
+            this.ClientSize = new System.Drawing.Size(564, 521);
             this.Controls.Add(this.lbItems);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.lblNuevoItem);
@@ -138,8 +138,8 @@
             this.Controls.Add(this.btnAceptar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(580, 600);
-            this.MinimumSize = new System.Drawing.Size(580, 600);
+            this.MaximumSize = new System.Drawing.Size(580, 560);
+            this.MinimumSize = new System.Drawing.Size(580, 560);
             this.Name = "frmNuevoItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Nuevo";
