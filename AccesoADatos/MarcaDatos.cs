@@ -41,11 +41,58 @@ namespace AccesoADatos
             }
 
 
+        }
+
+        public void agregarMarca(string marca)
+        {
+            ConectarDatos datos = new ConectarDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into Marcas  (Descripcion) values (@Descripcion)");
+                datos.setearParametro("@Descripcion", marca);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
 
-
-
+        public void eliminarMarca(string marca)
+        {
+            ConectarDatos datos = new ConectarDatos();
+            
+            try
+            {
+            datos.setearConsulta("delete from Marca WHERE descripcion = @desc");
+            datos.setearParametro("@desc", marca);
+            datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
         }
+
+
+
     }
+
+
+    
+
+
+
+
 }

@@ -16,7 +16,8 @@ namespace Presentacion
     {
                    
         private string condicion;
-
+        
+       
         public frmNuevoItem()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace Presentacion
         private void frmNuevoItem_Load(object sender, EventArgs e)
         {
             if (condicion == "Categoria")   //Hizo Clic en Categoria
-                { 
+                {
                 actualizarListaCategoria();
                 lblLista.Text = "Listado de Categorias:";
                 lblNuevoItem.Text = "Ingrese Nueva Categoria:";
@@ -63,7 +64,7 @@ namespace Presentacion
         {
             CategoriaDatos items = new CategoriaDatos();
             List<Categoria> listaCategoria;
-
+            lbItems.Items.Clear();
             try
             {
                 listaCategoria = items.listarCategoria();
@@ -71,7 +72,6 @@ namespace Presentacion
                 foreach (var categoria in listaCategoria)
                 {
                     lbItems.Items.Add(categoria.DescripcionCategoria);
-
                 }
 
             }
@@ -79,6 +79,7 @@ namespace Presentacion
             {
                 MessageBox.Show("Error de conexión con la Base de Datos");
             }
+            txtNuevoItem.Text = "";
 
         }
 
@@ -88,7 +89,7 @@ namespace Presentacion
             MarcaDatos items = new MarcaDatos();
             List<Marca> listaMarca;
 
-
+            lbItems.Items.Clear();
             try
             {
                 listaMarca = items.listarMarca();
@@ -104,7 +105,7 @@ namespace Presentacion
             {
                 MessageBox.Show("Error de conexión con la Base de Datos");
             }
-
+            txtNuevoItem.Text = "";
         }
 
         private void txtNuevoItem_KeyPress(object sender, KeyPressEventArgs e)
@@ -118,33 +119,27 @@ namespace Presentacion
 
         private void guardarDato()
         {
-            ConectarDatos datos = new ConectarDatos();
-
             if (txtNuevoItem.Text != "")
             {
                 try
                 {
                     if (condicion == "Categoria")   //Hizo Clic en Categoria
                     {
-                        datos.setearConsulta("Insert into categorias (Descripcion) values (@desc) ");
-                        datos.setearParametro("@desc", txtNuevoItem.Text);
-                        datos.ejecutarAccion();
-                        txtNuevoItem.Text = "";
+                        CategoriaDatos datos = new CategoriaDatos();
+                        string cadena = txtNuevoItem.Text;
+                        datos.agregarCategoria(cadena);
                         MessageBox.Show("La nueva Categoria fue guardada con éxito");
-                        lbItems.Items.Clear();
                         actualizarListaCategoria();
 
                     }
                     else                       //Hizo Clic en Marca
                     {
-                        datos.setearConsulta("Insert into marcas (Descripcion) values (@desc) ");
-                        datos.setearParametro("@desc", txtNuevoItem.Text);
-                        datos.ejecutarAccion();
-                        txtNuevoItem.Text = "";
-                        MessageBox.Show("La nueva Marca fue guardada con éxito");
-                        lbItems.Items.Clear();
-                        actualizarListaMarca();
 
+                        MarcaDatos datos = new MarcaDatos();
+                        string cadena = txtNuevoItem.Text;
+                        datos.agregarMarca(cadena);
+                        MessageBox.Show("La nueva Marca fue guardada con éxito");
+                        actualizarListaMarca();
                     }
 
                 }
@@ -152,10 +147,7 @@ namespace Presentacion
                 {
                     MessageBox.Show("Error de conexión con la Base de Datos");
                 }
-                finally
-                {
-                    datos.cerrarConexion();
-                }
+                
             }
         }
 
@@ -171,32 +163,24 @@ namespace Presentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
-            ConectarDatos datos = new ConectarDatos();
-
             try
             {
                 if (condicion == "Categoria")   //Hizo Clic en Categoria
                 {
-                    datos.setearConsulta("delete from categorias WHERE descripcion = @desc");
-                    datos.setearParametro("@desc", lbItems.SelectedItem.ToString());
-                    datos.ejecutarAccion();
-                    txtNuevoItem.Text = "";
+                    CategoriaDatos datos = new CategoriaDatos();
+                    string cadena = lbItems.SelectedItem.ToString();
+                    datos.eliminarCategoria(cadena);
                     MessageBox.Show("La  Categoria fue Eliminada con éxito");
-                    lbItems.Items.Clear();
                     actualizarListaCategoria();
 
                 }
                 else                       //Hizo Clic en Marca
                 {
-                    datos.setearConsulta("delete from marcas WHERE descripcion = @desc");
-                    datos.setearParametro("@desc", lbItems.SelectedItem.ToString());
-                    datos.ejecutarAccion();
-                    txtNuevoItem.Text = "";
-                    MessageBox.Show("La Marca fue Eliminada con éxito");
-                    lbItems.Items.Clear();
+                    MarcaDatos datos = new MarcaDatos();
+                    string cadena = lbItems.SelectedItem.ToString();
+                    datos.eliminarMarca(cadena);
+                    MessageBox.Show("La  Marca fue Eliminada con éxito");
                     actualizarListaMarca();
-
                 }
 
             }
@@ -204,11 +188,9 @@ namespace Presentacion
             {
                 MessageBox.Show("Error de conexión con la Base de Datos");
             }
-            finally
-            {
-                datos.cerrarConexion();
-            }
+           
             btnEliminar.Enabled = false;
+            txtNuevoItem.Enabled = true;
 
         }
 

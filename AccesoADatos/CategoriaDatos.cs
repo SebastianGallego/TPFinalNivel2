@@ -40,22 +40,13 @@ namespace AccesoADatos
             }
         }
 
-        public void agregarCategoria(Categoria categoria)   //Hacer Agregar Categoria y Agregar marca (sacarlo del formulario)
+        public void agregarCategoria(string categoria)   
         {
             ConectarDatos datos = new ConectarDatos();
-
             try
             {
-                datos.setearConsulta("Insert into Articulos (Codigo, Nombre, Descripcion, idCategoria, idMarca, ImagenUrl,Precio) values (@Codigo, @Nombre, @Descripcion, @idCategoria, @idMarca, @ImagenUrl,@Precio)  ");
-
-
-                datos.setearParametro("@Codigo", Articulo.Codigo);
-                datos.setearParametro("@Nombre", Articulo.Nombre);
-                datos.setearParametro("@Descripcion", Articulo.Descripcion);
-                datos.setearParametro("@idCategoria", Articulo.Categoria.Id);
-                datos.setearParametro("@idMarca", Articulo.Marca.Id);
-                datos.setearParametro("@ImagenUrl", Articulo.ImagenUrl);
-                datos.setearParametro("@Precio", Articulo.Precio);
+                datos.setearConsulta("Insert into Categorias  (Descripcion) values (@Descripcion)");
+                datos.setearParametro("@Descripcion", categoria);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -66,8 +57,21 @@ namespace AccesoADatos
             {
                 datos.cerrarConexion();
             }
+        }
 
+
+        public void eliminarCategoria(string categoria) 
+        {
+
+            ConectarDatos datos = new ConectarDatos();
+            datos.setearConsulta("delete from categorias WHERE descripcion = @desc");
+            datos.setearParametro("@desc", categoria);
+            datos.ejecutarAccion();
 
         }
+
+
+
+
     }
 }
