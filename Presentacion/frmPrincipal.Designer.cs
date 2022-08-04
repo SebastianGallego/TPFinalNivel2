@@ -151,6 +151,7 @@ namespace Presentacion
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "&Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnFiltrar
             // 
@@ -261,6 +262,7 @@ namespace Presentacion
             this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar...";
             this.eliminarToolStripMenuItem.ToolTipText = "Eliminar un Producto a la BD";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // filtrarToolStripMenuItem
             // 

@@ -17,7 +17,7 @@ namespace Presentacion
 
         private Articulo elementoArticulo = null;
 
-        public frmAltaModificacion()
+        public frmAltaModificacion()  //Agregar
         {
             InitializeComponent();
             btnAceptar.Text = "Guardar";
@@ -25,7 +25,7 @@ namespace Presentacion
         }
 
 
-        public frmAltaModificacion(Articulo articulo)  //Cuando se inicia el formulario con un Articulo como parametro
+        public frmAltaModificacion(Articulo articulo)   //Modificar
         {
             InitializeComponent();
             elementoArticulo = articulo;

@@ -122,12 +122,7 @@ namespace Presentacion
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado;
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-
-            frmAltaModificacion modificar = new frmAltaModificacion(seleccionado);
-            modificar.ShowDialog();
-            ActualizarGrilla();
+           modificarArticulo();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -167,11 +162,8 @@ namespace Presentacion
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-
             ActualizarGrilla();
             ocultarColumnas();
-
-
         }
 
 
@@ -192,10 +184,22 @@ namespace Presentacion
                 dgvArticulos.DataSource = listaArticulo;
                 dgvArticulos.Columns["Precio"].DefaultCellStyle.Format = "N2";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error en la Conexión con la Base de Datos");
             }
+
+            btnEliminar.Enabled = false;
+            btnModificar.Enabled = false;
+            eliminarToolStripMenuItem.Enabled = false;
+            modificarToolStripMenuItem.Enabled = false;
+
+            if (dgvArticulos.Rows.Count > 0)                //Para que no quede apuntando a ningun registro
+                dgvArticulos.Rows[0].Selected = false;
+
+            pbImagen.Image = null;
+            lbDetalles.Items.Clear();
+
         }
 
        
@@ -213,6 +217,10 @@ namespace Presentacion
                 lbDetalles.Items.Add("Marca: " + seleccionado.Marca);
                 lbDetalles.Items.Add("Categoria: " + seleccionado.Categoria);    
                 lbDetalles.Items.Add("Precio: $ " + Math.Round(seleccionado.Precio, 2));
+                btnModificar.Enabled = true;
+                btnEliminar.Enabled = true;
+                eliminarToolStripMenuItem.Enabled = true;
+                modificarToolStripMenuItem.Enabled = true;  
 
 
             }
@@ -233,12 +241,54 @@ namespace Presentacion
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            modificarArticulo();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            eliminarArticulo();
+        }
+
+        private void eliminarArticulo()
+        {
+            ArticuloDatos datos = new ArticuloDatos();
+            Articulo seleccionado;
+            try
+            {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                string cadena = seleccionado.Nombre + "  \nMarca: " + seleccionado.Marca + "  \nCategoría: " + seleccionado.Categoria;
+                DialogResult respuesta = MessageBox.Show("¿Está seguro que quiere eliminar el Artículo: \n \n" + cadena, "Eliminando Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    datos.eliminarArticulo(seleccionado.Id);
+                   
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error de comunicación con la Base de Datos");
+            }
+            ActualizarGrilla();
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            eliminarArticulo();
+        }
+
+
+        private void modificarArticulo()
+        {
             Articulo seleccionado;
             seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
 
             frmAltaModificacion modificar = new frmAltaModificacion(seleccionado);
             modificar.ShowDialog();
             ActualizarGrilla();
+
         }
+
+
+
     }
 }
