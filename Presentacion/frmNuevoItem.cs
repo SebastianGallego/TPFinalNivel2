@@ -2,12 +2,6 @@
 using AccesoADatos;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentacion
@@ -49,7 +43,6 @@ namespace Presentacion
                     actualizarListaMarca();
                     lblLista.Text = "Listado de Marcas:";
                     lblNuevoItem.Text = "Ingrese Nueva Marca:";
-
             }
 
         }
@@ -110,10 +103,8 @@ namespace Presentacion
 
         private void txtNuevoItem_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 guardarDato();
-
         }
 
 
@@ -181,6 +172,7 @@ namespace Presentacion
                     datos.eliminarMarca(cadena);
                     MessageBox.Show("La  Marca fue Eliminada con éxito");
                     actualizarListaMarca();
+
                 }
 
             }
@@ -188,7 +180,6 @@ namespace Presentacion
             {
                 MessageBox.Show("Error de conexión con la Base de Datos");
             }
-           
             btnEliminar.Enabled = false;
             txtNuevoItem.Enabled = true;
 

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccesoADatos;
 using Entidades;
@@ -37,7 +30,6 @@ namespace Presentacion
         {
             CategoriaDatos categorias = new CategoriaDatos();
             MarcaDatos marcas = new MarcaDatos();
-
 
             try
             {
@@ -80,11 +72,7 @@ namespace Presentacion
         }
 
 
-        private void validarNumerico() 
-        { 
-        //txtPrecio.Text 
         
-        }
 
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -119,19 +107,28 @@ namespace Presentacion
                     datos.agregarArticulo(elementoArticulo);
                     MessageBox.Show("Artículo Guardado");
                 }
-
-               
-
-                
-                Close();
-
+                this.Close();
             }
             catch (Exception)
             {
                 MessageBox.Show("Error al Guardar o Modificar Artículo");
             }
+            
+
+        }
+
+     
 
 
+        private void txtImagenUrl_LostFocus(object sender, System.EventArgs e)
+        {
+            cargarImagen(txtImagenUrl.Text);
+        }
+
+        private void txtImagenUrl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+                cargarImagen(txtImagenUrl.Text);
         }
 
        

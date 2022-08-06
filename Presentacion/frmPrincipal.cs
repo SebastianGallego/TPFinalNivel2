@@ -11,6 +11,7 @@ using AccesoADatos;
 using Entidades;
 
 
+
 //Consigna TP Integrador
 
 //Se necesita una aplicación para la gestión de artículos de un catálogo de un comercio.
@@ -127,19 +128,20 @@ namespace Presentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmAltaModificacion ventana = new frmAltaModificacion();    
-            ventana.ShowDialog();
-            ActualizarGrilla();
+            agregarArticulo();
         }
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            agregarArticulo();
+        }
+
+        private void agregarArticulo()
         {
             frmAltaModificacion ventana = new frmAltaModificacion();
             ventana.ShowDialog();
             ActualizarGrilla();
         }
-
-     
 
         private void CategoriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -221,8 +223,6 @@ namespace Presentacion
                 btnEliminar.Enabled = true;
                 eliminarToolStripMenuItem.Enabled = true;
                 modificarToolStripMenuItem.Enabled = true;  
-
-
             }
         }
 
@@ -249,6 +249,12 @@ namespace Presentacion
             eliminarArticulo();
         }
 
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            eliminarArticulo();
+        }
+
+
         private void eliminarArticulo()
         {
             ArticuloDatos datos = new ArticuloDatos();
@@ -271,10 +277,7 @@ namespace Presentacion
             ActualizarGrilla();
         }
 
-        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            eliminarArticulo();
-        }
+        
 
 
         private void modificarArticulo()
@@ -286,9 +289,10 @@ namespace Presentacion
             modificar.ShowDialog();
             ActualizarGrilla();
 
+            
+
         }
 
-
-
+        
     }
 }
