@@ -67,7 +67,7 @@ namespace Presentacion
             }
             catch (Exception)
             {
-                pbImagen.Load("https://www.trinomusic.com/sites/default/files/default_images/imagen-no-disponible.gif");
+                pbImagen.Load("https://www.sogarca.com/wp-content/uploads/2015/06/No-disponible.jpg");
             }
         }
 
@@ -128,7 +128,9 @@ namespace Presentacion
         private void txtImagenUrl_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
                 cargarImagen(txtImagenUrl.Text);
+            }
         }
 
        

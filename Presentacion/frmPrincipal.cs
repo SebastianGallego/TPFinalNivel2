@@ -166,6 +166,7 @@ namespace Presentacion
         {
             ActualizarGrilla();
             ocultarColumnas();
+            cargarCombos();
         }
 
 
@@ -185,6 +186,7 @@ namespace Presentacion
                 listaArticulo = datos.listarArticulo();
                 dgvArticulos.DataSource = listaArticulo;
                 dgvArticulos.Columns["Precio"].DefaultCellStyle.Format = "N2";
+                
             }
             catch (Exception)
             {
@@ -201,6 +203,7 @@ namespace Presentacion
 
             pbImagen.Image = null;
             lbDetalles.Items.Clear();
+            ocultarColumnas();
 
         }
 
@@ -235,7 +238,7 @@ namespace Presentacion
             }
             catch (Exception)
             {
-                pbImagen.Load("https://www.trinomusic.com/sites/default/files/default_images/imagen-no-disponible.gif");
+                pbImagen.Load("https://www.sogarca.com/wp-content/uploads/2015/06/No-disponible.jpg");
             }
         }
 
@@ -288,8 +291,82 @@ namespace Presentacion
             frmAltaModificacion modificar = new frmAltaModificacion(seleccionado);
             modificar.ShowDialog();
             ActualizarGrilla();
+        }
 
-            
+        
+
+        private void cargarCombos()
+        {
+            CategoriaDatos categorias = new CategoriaDatos();
+            MarcaDatos marcas = new MarcaDatos();
+
+            try
+            {
+                cboCategoria.DataSource = categorias.listarCategoria();
+                cboCategoria.ValueMember = "Id";
+                cboCategoria.DisplayMember = "DescripcionCategoria";
+                cboMarca.DataSource = marcas.listarMarca();
+                cboMarca.ValueMember = "Id";
+                cboMarca.DisplayMember = "DescripcionMarca";
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error en la conexión con la Base de Datos");
+            }
+            limpiarFiltroRapido();
+
+
+        }
+
+
+        private void limpiarFiltroRapido()
+        {
+            cboCategoria.SelectedIndex = -1;
+            cboMarca.SelectedIndex = -1;
+            ActualizarGrilla();
+        }
+
+       
+
+        private void btnLimpiarFiltroRapido_Click(object sender, EventArgs e)
+        {
+
+            limpiarFiltroRapido();
+        }
+
+        private void cboMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+
+            if (cboCategoria.SelectedIndex > -1)
+            {
+                listaFiltrada = listaArticulo.FindAll(item => (item.Marca.DescripcionMarca == cboMarca.Text) && (item.Categoria.DescripcionCategoria == cboCategoria.Text) );
+            }
+            else
+            {
+                listaFiltrada = listaArticulo.FindAll(item => item.Marca.DescripcionMarca == cboMarca.Text);
+            }
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+        }
+
+        private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+
+            if (cboMarca.SelectedIndex > -1)
+            {
+
+                listaFiltrada = listaArticulo.FindAll(item => (item.Categoria.DescripcionCategoria == cboCategoria.Text) && (item.Marca.DescripcionMarca == cboMarca.Text));
+            }
+            else
+            {
+                listaFiltrada = listaArticulo.FindAll(item => item.Categoria.DescripcionCategoria == cboCategoria.Text);
+
+            }
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
 
         }
 

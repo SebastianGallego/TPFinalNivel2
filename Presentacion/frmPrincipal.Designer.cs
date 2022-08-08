@@ -56,9 +56,17 @@ namespace Presentacion
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbDetalles = new System.Windows.Forms.ListBox();
+            this.gbFiltroRapido = new System.Windows.Forms.GroupBox();
+            this.lblPrecio = new System.Windows.Forms.Label();
+            this.btnLimpiarFiltroRapido = new System.Windows.Forms.Button();
+            this.cboCategoria = new System.Windows.Forms.ComboBox();
+            this.cboMarca = new System.Windows.Forms.ComboBox();
+            this.lblCategoria = new System.Windows.Forms.Label();
+            this.lblMarca = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.Menu.SuspendLayout();
+            this.gbFiltroRapido.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvArticulos
@@ -93,7 +101,7 @@ namespace Presentacion
             this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvArticulos.EnableHeadersVisualStyles = false;
             this.dgvArticulos.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dgvArticulos.Location = new System.Drawing.Point(43, 127);
+            this.dgvArticulos.Location = new System.Drawing.Point(167, 193);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.ReadOnly = true;
@@ -119,9 +127,9 @@ namespace Presentacion
             this.btnAgregar.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(43, 788);
+            this.btnAgregar.Location = new System.Drawing.Point(21, 193);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(155, 41);
+            this.btnAgregar.Size = new System.Drawing.Size(117, 41);
             this.btnAgregar.TabIndex = 1;
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -132,9 +140,9 @@ namespace Presentacion
             this.btnModificar.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnModificar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(268, 788);
+            this.btnModificar.Location = new System.Drawing.Point(21, 240);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(155, 41);
+            this.btnModificar.Size = new System.Drawing.Size(117, 41);
             this.btnModificar.TabIndex = 2;
             this.btnModificar.Text = "&Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
@@ -145,9 +153,9 @@ namespace Presentacion
             this.btnEliminar.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEliminar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(495, 788);
+            this.btnEliminar.Location = new System.Drawing.Point(21, 287);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(155, 41);
+            this.btnEliminar.Size = new System.Drawing.Size(117, 41);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "&Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -158,9 +166,9 @@ namespace Presentacion
             this.btnFiltrar.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFiltrar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiltrar.Location = new System.Drawing.Point(732, 788);
+            this.btnFiltrar.Location = new System.Drawing.Point(21, 334);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(155, 41);
+            this.btnFiltrar.Size = new System.Drawing.Size(117, 41);
             this.btnFiltrar.TabIndex = 4;
             this.btnFiltrar.Text = "&Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = false;
@@ -168,7 +176,7 @@ namespace Presentacion
             // pbImagen
             // 
             this.pbImagen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbImagen.Location = new System.Drawing.Point(986, 334);
+            this.pbImagen.Location = new System.Drawing.Point(1104, 400);
             this.pbImagen.Margin = new System.Windows.Forms.Padding(0);
             this.pbImagen.Name = "pbImagen";
             this.pbImagen.Size = new System.Drawing.Size(400, 400);
@@ -180,7 +188,7 @@ namespace Presentacion
             // 
             this.lblListadoProductos.AutoSize = true;
             this.lblListadoProductos.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListadoProductos.Location = new System.Drawing.Point(48, 96);
+            this.lblListadoProductos.Location = new System.Drawing.Point(502, 38);
             this.lblListadoProductos.Name = "lblListadoProductos";
             this.lblListadoProductos.Size = new System.Drawing.Size(168, 19);
             this.lblListadoProductos.TabIndex = 7;
@@ -190,7 +198,7 @@ namespace Presentacion
             // 
             this.ldbDescripcion.AutoSize = true;
             this.ldbDescripcion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ldbDescripcion.Location = new System.Drawing.Point(928, 96);
+            this.ldbDescripcion.Location = new System.Drawing.Point(1046, 162);
             this.ldbDescripcion.Name = "ldbDescripcion";
             this.ldbDescripcion.Size = new System.Drawing.Size(82, 19);
             this.ldbDescripcion.TabIndex = 8;
@@ -201,7 +209,7 @@ namespace Presentacion
             this.btnCerrar.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCerrar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(1286, 788);
+            this.btnCerrar.Location = new System.Drawing.Point(1388, 908);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(155, 41);
             this.btnCerrar.TabIndex = 9;
@@ -221,7 +229,7 @@ namespace Presentacion
             this.acercaDeToolStripMenuItem});
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(1484, 24);
+            this.Menu.Size = new System.Drawing.Size(1584, 24);
             this.Menu.TabIndex = 10;
             this.Menu.Text = "menuStrip1";
             // 
@@ -309,18 +317,102 @@ namespace Presentacion
             this.lbDetalles.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDetalles.FormattingEnabled = true;
             this.lbDetalles.ItemHeight = 19;
-            this.lbDetalles.Location = new System.Drawing.Point(932, 127);
+            this.lbDetalles.Location = new System.Drawing.Point(1050, 193);
             this.lbDetalles.Name = "lbDetalles";
             this.lbDetalles.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.lbDetalles.Size = new System.Drawing.Size(509, 175);
             this.lbDetalles.TabIndex = 23;
+            // 
+            // gbFiltroRapido
+            // 
+            this.gbFiltroRapido.Controls.Add(this.lblPrecio);
+            this.gbFiltroRapido.Controls.Add(this.btnLimpiarFiltroRapido);
+            this.gbFiltroRapido.Controls.Add(this.cboCategoria);
+            this.gbFiltroRapido.Controls.Add(this.cboMarca);
+            this.gbFiltroRapido.Controls.Add(this.lblCategoria);
+            this.gbFiltroRapido.Controls.Add(this.lblMarca);
+            this.gbFiltroRapido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbFiltroRapido.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbFiltroRapido.Location = new System.Drawing.Point(167, 84);
+            this.gbFiltroRapido.Name = "gbFiltroRapido";
+            this.gbFiltroRapido.Size = new System.Drawing.Size(844, 103);
+            this.gbFiltroRapido.TabIndex = 29;
+            this.gbFiltroRapido.TabStop = false;
+            this.gbFiltroRapido.Text = "Filtro Rápido";
+            // 
+            // lblPrecio
+            // 
+            this.lblPrecio.AutoSize = true;
+            this.lblPrecio.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecio.Location = new System.Drawing.Point(406, 37);
+            this.lblPrecio.Name = "lblPrecio";
+            this.lblPrecio.Size = new System.Drawing.Size(74, 19);
+            this.lblPrecio.TabIndex = 35;
+            this.lblPrecio.Text = "Precios:";
+            // 
+            // btnLimpiarFiltroRapido
+            // 
+            this.btnLimpiarFiltroRapido.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnLimpiarFiltroRapido.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLimpiarFiltroRapido.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarFiltroRapido.Location = new System.Drawing.Point(611, 56);
+            this.btnLimpiarFiltroRapido.Name = "btnLimpiarFiltroRapido";
+            this.btnLimpiarFiltroRapido.Size = new System.Drawing.Size(191, 27);
+            this.btnLimpiarFiltroRapido.TabIndex = 33;
+            this.btnLimpiarFiltroRapido.Text = "&Limpiar Filtro rápido";
+            this.btnLimpiarFiltroRapido.UseVisualStyleBackColor = false;
+            this.btnLimpiarFiltroRapido.Click += new System.EventHandler(this.btnLimpiarFiltroRapido_Click);
+            // 
+            // cboCategoria
+            // 
+            this.cboCategoria.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.cboCategoria.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCategoria.FormattingEnabled = true;
+            this.cboCategoria.Location = new System.Drawing.Point(231, 59);
+            this.cboCategoria.Name = "cboCategoria";
+            this.cboCategoria.Size = new System.Drawing.Size(144, 24);
+            this.cboCategoria.TabIndex = 30;
+            this.cboCategoria.SelectedIndexChanged += new System.EventHandler(this.cboCategoria_SelectedIndexChanged);
+            // 
+            // cboMarca
+            // 
+            this.cboMarca.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.cboMarca.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMarca.FormattingEnabled = true;
+            this.cboMarca.ItemHeight = 16;
+            this.cboMarca.Location = new System.Drawing.Point(46, 59);
+            this.cboMarca.Name = "cboMarca";
+            this.cboMarca.Size = new System.Drawing.Size(142, 24);
+            this.cboMarca.TabIndex = 29;
+            this.cboMarca.SelectedIndexChanged += new System.EventHandler(this.cboMarca_SelectedIndexChanged);
+            // 
+            // lblCategoria
+            // 
+            this.lblCategoria.AutoSize = true;
+            this.lblCategoria.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategoria.Location = new System.Drawing.Point(227, 37);
+            this.lblCategoria.Name = "lblCategoria";
+            this.lblCategoria.Size = new System.Drawing.Size(103, 19);
+            this.lblCategoria.TabIndex = 32;
+            this.lblCategoria.Text = "Categorías:";
+            // 
+            // lblMarca
+            // 
+            this.lblMarca.AutoSize = true;
+            this.lblMarca.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMarca.Location = new System.Drawing.Point(42, 37);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(72, 19);
+            this.lblMarca.TabIndex = 31;
+            this.lblMarca.Text = "Marcas:";
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
-            this.ClientSize = new System.Drawing.Size(1484, 861);
+            this.ClientSize = new System.Drawing.Size(1584, 961);
+            this.Controls.Add(this.gbFiltroRapido);
             this.Controls.Add(this.lbDetalles);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.ldbDescripcion);
@@ -336,8 +428,8 @@ namespace Presentacion
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.Menu;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1500, 900);
-            this.MinimumSize = new System.Drawing.Size(1500, 900);
+            this.MaximumSize = new System.Drawing.Size(1600, 1000);
+            this.MinimumSize = new System.Drawing.Size(1600, 1000);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TP Integrador Sebastián Gallego";
@@ -346,6 +438,8 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.Menu.ResumeLayout(false);
             this.Menu.PerformLayout();
+            this.gbFiltroRapido.ResumeLayout(false);
+            this.gbFiltroRapido.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -374,6 +468,13 @@ namespace Presentacion
         private System.Windows.Forms.ToolStripMenuItem CategoriaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MarcaToolStripMenuItem;
         private System.Windows.Forms.ListBox lbDetalles;
+        private System.Windows.Forms.GroupBox gbFiltroRapido;
+        private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.Button btnLimpiarFiltroRapido;
+        private System.Windows.Forms.ComboBox cboCategoria;
+        private System.Windows.Forms.ComboBox cboMarca;
+        private System.Windows.Forms.Label lblCategoria;
+        private System.Windows.Forms.Label lblMarca;
     }
 }
 

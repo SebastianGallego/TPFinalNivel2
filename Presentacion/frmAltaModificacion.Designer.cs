@@ -165,7 +165,7 @@
             this.txtImagenUrl.Name = "txtImagenUrl";
             this.txtImagenUrl.Size = new System.Drawing.Size(200, 27);
             this.txtImagenUrl.TabIndex = 4;
-            this.txtImagenUrl.TextChanged += new System.EventHandler(this.txtImagenUrl_TextChanged);
+            this.txtImagenUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtImagenUrl_KeyPress);
             this.txtImagenUrl.Leave += new System.EventHandler(this.txtImagenUrl_LostFocus);
             // 
             // lblImagenUrl
