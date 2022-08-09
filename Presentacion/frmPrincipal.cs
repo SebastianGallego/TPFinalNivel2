@@ -331,45 +331,64 @@ namespace Presentacion
 
         private void btnLimpiarFiltroRapido_Click(object sender, EventArgs e)
         {
-
+            txtFiltro.Text = "";
             limpiarFiltroRapido();
         }
 
         private void cboMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Articulo> listaFiltrada;
-
-            if (cboCategoria.SelectedIndex > -1)
-            {
-                listaFiltrada = listaArticulo.FindAll(item => (item.Marca.DescripcionMarca == cboMarca.Text) && (item.Categoria.DescripcionCategoria == cboCategoria.Text) );
-            }
-            else
-            {
-                listaFiltrada = listaArticulo.FindAll(item => item.Marca.DescripcionMarca == cboMarca.Text);
-            }
-            dgvArticulos.DataSource = null;
-            dgvArticulos.DataSource = listaFiltrada;
+            filtroRapido();
         }
 
         private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
+            filtroRapido();
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            filtroRapido();
+        }
+
+        private void filtroRapido()
+        {
+
             List<Articulo> listaFiltrada;
+            string cadenaFiltro = txtFiltro.Text;
 
-            if (cboMarca.SelectedIndex > -1)
+            if (cboMarca.SelectedIndex > -1 && cboCategoria.SelectedIndex > -1)  //Si está seleccionado Marca y Categoria, mas el Filtro de Texto
             {
-
-                listaFiltrada = listaArticulo.FindAll(item => (item.Categoria.DescripcionCategoria == cboCategoria.Text) && (item.Marca.DescripcionMarca == cboMarca.Text));
+                listaFiltrada = listaArticulo.FindAll((item => (item.Codigo.ToUpper().Contains(cadenaFiltro.ToUpper()) || item.Nombre.ToUpper().Contains(cadenaFiltro.ToUpper())) && (item.Marca.DescripcionMarca == cboMarca.Text && item.Categoria.DescripcionCategoria == cboCategoria.Text)));
             }
-            else
+            else if (cboMarca.SelectedIndex > -1 && cboCategoria.SelectedIndex < 0) //Si está seleccionado Marca Pero No Categoria, mas el Texto
+            {
+                listaFiltrada = listaArticulo.FindAll(item => item.Marca.DescripcionMarca == cboMarca.Text && (item.Codigo.ToUpper().Contains(cadenaFiltro.ToUpper()) || item.Nombre.ToUpper().Contains(cadenaFiltro.ToUpper())));
+            }
+            else if (cboMarca.SelectedIndex < 0 && cboCategoria.SelectedIndex > -1)//Si esta seleccionado Categoria pero no Marca, el Texto
+            {
+                listaFiltrada = listaArticulo.FindAll(item => item.Categoria.DescripcionCategoria == cboCategoria.Text && (item.Codigo.ToUpper().Contains(cadenaFiltro.ToUpper()) || item.Nombre.ToUpper().Contains(cadenaFiltro.ToUpper())));
+            }
+            else if (cadenaFiltro=="" && cboMarca.SelectedIndex < 0 && cboCategoria.SelectedIndex > -1 )//Si esta seleccionado Categoria pero no Marca, SIN Texto
             {
                 listaFiltrada = listaArticulo.FindAll(item => item.Categoria.DescripcionCategoria == cboCategoria.Text);
-
             }
+            else if (cadenaFiltro == "" && cboMarca.SelectedIndex > -1 && cboCategoria.SelectedIndex < 0)//Si esta seleccionado Marca pero no Categoria, SIN Texto
+            {
+                listaFiltrada = listaArticulo.FindAll(item => item.Marca.DescripcionMarca == cboMarca.Text);
+            }
+            else  // Filtro con solo el texto
+            {
+                listaFiltrada = listaArticulo.FindAll(item => item.Codigo.ToUpper().Contains(cadenaFiltro.ToUpper()) || item.Nombre.ToUpper().Contains(cadenaFiltro.ToUpper()));
+            }
+
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
+
+
 
         }
 
-        
+
     }
 }

@@ -57,12 +57,13 @@ namespace Presentacion
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbDetalles = new System.Windows.Forms.ListBox();
             this.gbFiltroRapido = new System.Windows.Forms.GroupBox();
-            this.lblPrecio = new System.Windows.Forms.Label();
+            this.lblFiltro = new System.Windows.Forms.Label();
             this.btnLimpiarFiltroRapido = new System.Windows.Forms.Button();
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblMarca = new System.Windows.Forms.Label();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.Menu.SuspendLayout();
@@ -325,7 +326,8 @@ namespace Presentacion
             // 
             // gbFiltroRapido
             // 
-            this.gbFiltroRapido.Controls.Add(this.lblPrecio);
+            this.gbFiltroRapido.Controls.Add(this.txtFiltro);
+            this.gbFiltroRapido.Controls.Add(this.lblFiltro);
             this.gbFiltroRapido.Controls.Add(this.btnLimpiarFiltroRapido);
             this.gbFiltroRapido.Controls.Add(this.cboCategoria);
             this.gbFiltroRapido.Controls.Add(this.cboMarca);
@@ -340,15 +342,15 @@ namespace Presentacion
             this.gbFiltroRapido.TabStop = false;
             this.gbFiltroRapido.Text = "Filtro Rápido";
             // 
-            // lblPrecio
+            // lblFiltro
             // 
-            this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(406, 37);
-            this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(74, 19);
-            this.lblPrecio.TabIndex = 35;
-            this.lblPrecio.Text = "Precios:";
+            this.lblFiltro.AutoSize = true;
+            this.lblFiltro.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFiltro.Location = new System.Drawing.Point(16, 35);
+            this.lblFiltro.Name = "lblFiltro";
+            this.lblFiltro.Size = new System.Drawing.Size(154, 19);
+            this.lblFiltro.TabIndex = 35;
+            this.lblFiltro.Text = "Código / Nombre:";
             // 
             // btnLimpiarFiltroRapido
             // 
@@ -368,7 +370,7 @@ namespace Presentacion
             this.cboCategoria.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.cboCategoria.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCategoria.FormattingEnabled = true;
-            this.cboCategoria.Location = new System.Drawing.Point(231, 59);
+            this.cboCategoria.Location = new System.Drawing.Point(421, 56);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(144, 24);
             this.cboCategoria.TabIndex = 30;
@@ -380,7 +382,7 @@ namespace Presentacion
             this.cboMarca.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMarca.FormattingEnabled = true;
             this.cboMarca.ItemHeight = 16;
-            this.cboMarca.Location = new System.Drawing.Point(46, 59);
+            this.cboMarca.Location = new System.Drawing.Point(236, 56);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(142, 24);
             this.cboMarca.TabIndex = 29;
@@ -390,7 +392,7 @@ namespace Presentacion
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(227, 37);
+            this.lblCategoria.Location = new System.Drawing.Point(417, 35);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(103, 19);
             this.lblCategoria.TabIndex = 32;
@@ -400,11 +402,22 @@ namespace Presentacion
             // 
             this.lblMarca.AutoSize = true;
             this.lblMarca.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca.Location = new System.Drawing.Point(42, 37);
+            this.lblMarca.Location = new System.Drawing.Point(232, 34);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(72, 19);
             this.lblMarca.TabIndex = 31;
             this.lblMarca.Text = "Marcas:";
+            // 
+            // txtFiltro
+            // 
+            this.txtFiltro.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.txtFiltro.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiltro.Location = new System.Drawing.Point(20, 57);
+            this.txtFiltro.MaxLength = 50;
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(167, 27);
+            this.txtFiltro.TabIndex = 36;
+            this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
             // frmPrincipal
             // 
@@ -469,12 +482,13 @@ namespace Presentacion
         private System.Windows.Forms.ToolStripMenuItem MarcaToolStripMenuItem;
         private System.Windows.Forms.ListBox lbDetalles;
         private System.Windows.Forms.GroupBox gbFiltroRapido;
-        private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.Button btnLimpiarFiltroRapido;
         private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.ComboBox cboMarca;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.Label lblMarca;
+        private System.Windows.Forms.TextBox txtFiltro;
     }
 }
 
