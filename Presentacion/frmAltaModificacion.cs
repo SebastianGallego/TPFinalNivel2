@@ -39,6 +39,8 @@ namespace Presentacion
                 cboMarca.DataSource = marcas.listarMarca();
                 cboMarca.ValueMember = "Id";
                 cboMarca.DisplayMember = "DescripcionMarca";
+                cboMarca.SelectedIndex = -1;
+                cboCategoria.SelectedIndex = -1;
 
                 if (elementoArticulo != null)
                 {

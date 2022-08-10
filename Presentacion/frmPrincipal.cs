@@ -197,10 +197,7 @@ namespace Presentacion
             btnModificar.Enabled = false;
             eliminarToolStripMenuItem.Enabled = false;
             modificarToolStripMenuItem.Enabled = false;
-
-            if (dgvArticulos.Rows.Count > 0)                //Para que no quede apuntando a ningun registro
-                dgvArticulos.Rows[0].Selected = false;
-
+                
             pbImagen.Image = null;
             lbDetalles.Items.Clear();
             ocultarColumnas();
@@ -220,12 +217,14 @@ namespace Presentacion
                 lbDetalles.Items.Add("Nombre: " + seleccionado.Nombre);
                 lbDetalles.Items.Add("Descripción: " + seleccionado.Descripcion);
                 lbDetalles.Items.Add("Marca: " + seleccionado.Marca);
-                lbDetalles.Items.Add("Categoria: " + seleccionado.Categoria);    
+                lbDetalles.Items.Add("Categoria: " + seleccionado.Categoria);
                 lbDetalles.Items.Add("Precio: $ " + Math.Round(seleccionado.Precio, 2));
+               
                 btnModificar.Enabled = true;
                 btnEliminar.Enabled = true;
                 eliminarToolStripMenuItem.Enabled = true;
-                modificarToolStripMenuItem.Enabled = true;  
+                modificarToolStripMenuItem.Enabled = true;
+                
             }
         }
 
@@ -270,7 +269,6 @@ namespace Presentacion
                 if (respuesta == DialogResult.Yes)
                 {
                     datos.eliminarArticulo(seleccionado.Id);
-                   
                 }
             }
             catch (Exception)
@@ -299,7 +297,6 @@ namespace Presentacion
         {
             CategoriaDatos categorias = new CategoriaDatos();
             MarcaDatos marcas = new MarcaDatos();
-
             try
             {
                 cboCategoria.DataSource = categorias.listarCategoria();
@@ -316,7 +313,12 @@ namespace Presentacion
             }
             limpiarFiltroRapido();
 
-
+            cboPrecio.Items.Add("Mayor a");
+            cboPrecio.Items.Add("Menor a");
+            cboPrecio.Items.Add("Entre");
+            cboCriterio.Items.Add("Comienza con");
+            cboCriterio.Items.Add("Termina Con");
+            cboCriterio.Items.Add("Contine");
         }
 
 
@@ -384,11 +386,8 @@ namespace Presentacion
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltrada;
             ocultarColumnas();
-
-
-
         }
 
-
+       
     }
 }
