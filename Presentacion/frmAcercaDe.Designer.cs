@@ -80,7 +80,7 @@
             // pbLinkedin
             // 
             this.pbLinkedin.Image = ((System.Drawing.Image)(resources.GetObject("pbLinkedin.Image")));
-            this.pbLinkedin.Location = new System.Drawing.Point(101, 340);
+            this.pbLinkedin.Location = new System.Drawing.Point(113, 340);
             this.pbLinkedin.Name = "pbLinkedin";
             this.pbLinkedin.Size = new System.Drawing.Size(50, 50);
             this.pbLinkedin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

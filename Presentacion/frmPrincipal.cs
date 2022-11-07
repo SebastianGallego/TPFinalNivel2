@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccesoADatos;
 using Entidades;
-
+using Presentacion;
 
 
 //Consigna TP Integrador
@@ -53,24 +53,17 @@ using Entidades;
 //  Al hacer clic en el DataGrid se actualiza la imagen y el detalle del Articulo.
 //  Está formateado el precio con 2 decimales tanto en la grilla como en el listbox.
 //  Los botones Agregar y Modificar llaman al mismo formulario pero con diferente funcionalidad.
-//
-//
-//
+//  El boton de Filtro Avanzado del Panel queda retenido como una llave y no como un pulsador
+//  activando el grupo de Filtro Avanzado
+//  Al hacer clic en el datagrid se habilita la opcion para Modificar o Eliminar el producto
 
 
 
 
 // -Formulario AltaModificacion
-//  
+//  Permite hacer modificaciones en los campos del producto
+//  Funciona tanto para dar un alta como para modificar
 //
-//
-//
-//
-//
-//
-
-
-
 
 
 
@@ -92,14 +85,13 @@ using Entidades;
 
 
 
-
 namespace Presentacion
 {
     public partial class frmPrincipal : Form
     {
 
         private List<Articulo> listaArticulo;
-
+        private bool onOff = false;
         
 
         public frmPrincipal()
@@ -108,7 +100,6 @@ namespace Presentacion
         }
 
         
-
 
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -167,6 +158,11 @@ namespace Presentacion
             ActualizarGrilla();
             ocultarColumnas();
             cargarCombos();
+            gbFiltroAvanzado.Visible = false;
+            txtMaximo.Visible = false;
+            lblMinimo.Text = "Valor:";
+            lblMaximo.Visible = false;
+
         }
 
 
@@ -313,12 +309,13 @@ namespace Presentacion
             }
             limpiarFiltroRapido();
 
+            cboPrecio.Items.Add("Igual a");
             cboPrecio.Items.Add("Mayor a");
             cboPrecio.Items.Add("Menor a");
             cboPrecio.Items.Add("Entre");
             cboCriterio.Items.Add("Comienza con");
             cboCriterio.Items.Add("Termina Con");
-            cboCriterio.Items.Add("Contine");
+            cboCriterio.Items.Add("Contiene");
         }
 
 
@@ -388,6 +385,220 @@ namespace Presentacion
             ocultarColumnas();
         }
 
-       
+        private void btnFiltroAvanzado_Click(object sender, EventArgs e)
+        {
+            btnBuscar.Enabled = false;
+            if (onOff)
+            {
+                onOff = false;
+                btnFiltroAvanzado.BackColor = Color.Black;
+                gbFiltroAvanzado.Visible = false;
+            }
+            else
+            {
+                onOff = true;
+                btnFiltroAvanzado.BackColor = Color.DimGray;
+                gbFiltroAvanzado.Visible = true;
+                cboCriterio.SelectedIndex = -1;
+                cboPrecio.SelectedIndex = -1;
+                txtNombre.Text = "";
+                txtMinimo.Text = "";
+                txtMaximo.Text = "";
+
+            }
+
+        }
+
+        private void cboPrecio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnLimpiar.Enabled = true;
+
+
+            if (cboPrecio.SelectedIndex >= 0)
+            {
+                if (cboPrecio.SelectedItem.ToString() == "Entre")
+                {
+                    txtMaximo.Visible = true;
+                    lblMinimo.Text = "Mínimo:";
+                    lblMaximo.Visible = true;
+                }
+                else
+                {
+                    txtMaximo.Visible = false;
+                    lblMinimo.Text = "Valor:";
+                    lblMaximo.Visible = false;
+                }
+            }
+            
+            if ((cboPrecio.SelectedIndex >= 0 && txtMinimo.Text != "")|| (cboCriterio.SelectedIndex >= 0 && txtNombre.Text != ""))
+            {
+                btnBuscar.Enabled = true;   
+            }
+            else
+            {
+                btnBuscar.Enabled = false;
+
+            }
+
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string criterioNombre;
+            string nombre;
+            string criterioPrecio;
+            decimal precioMinimo;
+            decimal precioMaximo;
+
+
+
+            if (cboCriterio.SelectedIndex >= 0)
+            {
+                criterioNombre = cboCriterio.SelectedItem.ToString();
+                nombre = txtNombre.Text;
+            }
+
+
+            if (cboPrecio.SelectedIndex >= 0)    //Validacion de Solo Numeros
+            {
+                criterioPrecio = cboPrecio.SelectedItem.ToString();
+
+                if (esNumero(txtMinimo.Text))
+                {
+                    precioMinimo = decimal.Parse(txtMinimo.Text);
+                
+                    if (txtMaximo.Text != "")
+                    {
+                        if (esNumero(txtMaximo.Text))
+                        {
+                            precioMaximo = decimal.Parse(txtMaximo.Text);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese un Número Máximo");
+                            txtMaximo.SelectionStart = 0;
+                            txtMaximo.SelectionLength = txtMaximo.Text.Length;
+                            txtMaximo.Focus();
+                        }
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese un Número Mínimo");
+                    txtMinimo.SelectionStart = 0;
+                    txtMinimo.SelectionLength = txtMinimo.Text.Length;
+                    txtMinimo.Focus();
+                }
+            }
+            
+            ArticuloDatos datos = new ArticuloDatos();
+            dgvArticulos.DataSource = datos.filtroAvanzado(criterioNombre, nombre, criterioPrecio,precioMinimo, precioMaximo);
+
+
+
+            try
+            {
+                
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error en la Conexión con la Base de Datos");
+            }
+
+
+
+
+        }
+
+        private void cboCriterio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnLimpiar.Enabled = true;
+
+            if ((cboPrecio.SelectedIndex >= 0 && txtMinimo.Text != "")|| (cboCriterio.SelectedIndex >= 0 && txtNombre.Text !=""))
+            {
+                btnBuscar.Enabled = true;
+            }
+            else
+            {
+                btnBuscar.Enabled = false;
+
+            }
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            btnLimpiar.Enabled = true;
+
+            if (txtNombre.Text.Length > 0 && cboCriterio.SelectedIndex >= 0)
+            {
+                btnBuscar.Enabled=true; 
+            }
+            else
+            {
+                btnBuscar.Enabled = false;
+            }
+        }
+
+        private void txtMinimo_TextChanged(object sender, EventArgs e)
+        {
+            btnLimpiar.Enabled = true;
+
+            if ((cboPrecio.SelectedIndex >= 0 && txtMinimo.Text != "") || (cboCriterio.SelectedIndex >= 0 && txtNombre.Text != ""))
+            {
+                btnBuscar.Enabled = true;
+                
+            }
+            else
+            {
+                btnBuscar.Enabled = false;
+
+            }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            btnBuscar.Enabled = false;
+            txtMinimo.Text = "";
+            txtMaximo.Text = "";
+            txtNombre.Text = "";
+            cboPrecio.SelectedIndex = -1;
+            cboCriterio.SelectedIndex = -1;
+            btnLimpiar.Enabled = false;
+
+        }
+
+
+        static bool esNumero(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+
+
+        static bool esTexto(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsLetter(caracter)))
+                {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+
+
     }
+
 }

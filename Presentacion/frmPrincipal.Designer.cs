@@ -62,8 +62,13 @@ namespace Presentacion
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblMarca = new System.Windows.Forms.Label();
             this.panelLateral = new System.Windows.Forms.Panel();
+            this.btnFiltroAvanzado = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.gbFiltroAvanzado = new System.Windows.Forms.GroupBox();
+            this.lblMaximo = new System.Windows.Forms.Label();
+            this.lblMinimo = new System.Windows.Forms.Label();
+            this.txtMaximo = new System.Windows.Forms.TextBox();
+            this.txtMinimo = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -71,11 +76,7 @@ namespace Presentacion
             this.cboCriterio = new System.Windows.Forms.ComboBox();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.lblCriterio = new System.Windows.Forms.Label();
-            this.txtMinimo = new System.Windows.Forms.TextBox();
-            this.txtMaximo = new System.Windows.Forms.TextBox();
-            this.lblMinimo = new System.Windows.Forms.Label();
-            this.lblMaximo = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.Menu.SuspendLayout();
@@ -133,7 +134,7 @@ namespace Presentacion
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvArticulos.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(844, 521);
+            this.dgvArticulos.Size = new System.Drawing.Size(844, 565);
             this.dgvArticulos.TabIndex = 0;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
@@ -414,15 +415,31 @@ namespace Presentacion
             // panelLateral
             // 
             this.panelLateral.BackColor = System.Drawing.Color.Black;
-            this.panelLateral.Controls.Add(this.button1);
+            this.panelLateral.Controls.Add(this.btnFiltroAvanzado);
             this.panelLateral.Controls.Add(this.btnCerrar);
             this.panelLateral.Controls.Add(this.btnAgregar);
             this.panelLateral.Controls.Add(this.btnModificar);
             this.panelLateral.Controls.Add(this.btnEliminar);
             this.panelLateral.Location = new System.Drawing.Point(0, 25);
             this.panelLateral.Name = "panelLateral";
-            this.panelLateral.Size = new System.Drawing.Size(161, 838);
+            this.panelLateral.Size = new System.Drawing.Size(161, 937);
             this.panelLateral.TabIndex = 30;
+            // 
+            // btnFiltroAvanzado
+            // 
+            this.btnFiltroAvanzado.BackColor = System.Drawing.Color.Black;
+            this.btnFiltroAvanzado.FlatAppearance.BorderSize = 0;
+            this.btnFiltroAvanzado.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.btnFiltroAvanzado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiltroAvanzado.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltroAvanzado.ForeColor = System.Drawing.Color.White;
+            this.btnFiltroAvanzado.Location = new System.Drawing.Point(0, 340);
+            this.btnFiltroAvanzado.Name = "btnFiltroAvanzado";
+            this.btnFiltroAvanzado.Size = new System.Drawing.Size(161, 41);
+            this.btnFiltroAvanzado.TabIndex = 7;
+            this.btnFiltroAvanzado.Text = "&Filtro Avanzado";
+            this.btnFiltroAvanzado.UseVisualStyleBackColor = false;
+            this.btnFiltroAvanzado.Click += new System.EventHandler(this.btnFiltroAvanzado_Click);
             // 
             // btnCerrar
             // 
@@ -432,7 +449,7 @@ namespace Presentacion
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrar.ForeColor = System.Drawing.Color.White;
-            this.btnCerrar.Location = new System.Drawing.Point(0, 754);
+            this.btnCerrar.Location = new System.Drawing.Point(0, 893);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(161, 41);
             this.btnCerrar.TabIndex = 6;
@@ -442,6 +459,7 @@ namespace Presentacion
             // 
             // gbFiltroAvanzado
             // 
+            this.gbFiltroAvanzado.Controls.Add(this.btnLimpiar);
             this.gbFiltroAvanzado.Controls.Add(this.lblMaximo);
             this.gbFiltroAvanzado.Controls.Add(this.lblMinimo);
             this.gbFiltroAvanzado.Controls.Add(this.txtMaximo);
@@ -455,12 +473,53 @@ namespace Presentacion
             this.gbFiltroAvanzado.Controls.Add(this.lblCriterio);
             this.gbFiltroAvanzado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbFiltroAvanzado.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbFiltroAvanzado.Location = new System.Drawing.Point(182, 746);
+            this.gbFiltroAvanzado.Location = new System.Drawing.Point(338, 776);
             this.gbFiltroAvanzado.Name = "gbFiltroAvanzado";
-            this.gbFiltroAvanzado.Size = new System.Drawing.Size(844, 103);
+            this.gbFiltroAvanzado.Size = new System.Drawing.Size(565, 173);
             this.gbFiltroAvanzado.TabIndex = 31;
             this.gbFiltroAvanzado.TabStop = false;
-            this.gbFiltroAvanzado.Text = "Filtro Rápido";
+            this.gbFiltroAvanzado.Text = "Filtro Avanzado";
+            // 
+            // lblMaximo
+            // 
+            this.lblMaximo.AutoSize = true;
+            this.lblMaximo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMaximo.Location = new System.Drawing.Point(277, 105);
+            this.lblMaximo.Name = "lblMaximo";
+            this.lblMaximo.Size = new System.Drawing.Size(79, 19);
+            this.lblMaximo.TabIndex = 40;
+            this.lblMaximo.Text = "Máximo:";
+            // 
+            // lblMinimo
+            // 
+            this.lblMinimo.AutoSize = true;
+            this.lblMinimo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMinimo.Location = new System.Drawing.Point(180, 105);
+            this.lblMinimo.Name = "lblMinimo";
+            this.lblMinimo.Size = new System.Drawing.Size(74, 19);
+            this.lblMinimo.TabIndex = 39;
+            this.lblMinimo.Text = "Mínimo:";
+            // 
+            // txtMaximo
+            // 
+            this.txtMaximo.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.txtMaximo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaximo.Location = new System.Drawing.Point(281, 127);
+            this.txtMaximo.MaxLength = 50;
+            this.txtMaximo.Name = "txtMaximo";
+            this.txtMaximo.Size = new System.Drawing.Size(71, 27);
+            this.txtMaximo.TabIndex = 38;
+            // 
+            // txtMinimo
+            // 
+            this.txtMinimo.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.txtMinimo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMinimo.Location = new System.Drawing.Point(184, 127);
+            this.txtMinimo.MaxLength = 50;
+            this.txtMinimo.Name = "txtMinimo";
+            this.txtMinimo.Size = new System.Drawing.Size(70, 27);
+            this.txtMinimo.TabIndex = 37;
+            this.txtMinimo.TextChanged += new System.EventHandler(this.txtMinimo_TextChanged);
             // 
             // txtNombre
             // 
@@ -471,6 +530,7 @@ namespace Presentacion
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(167, 27);
             this.txtNombre.TabIndex = 36;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // lblNombre
             // 
@@ -485,14 +545,16 @@ namespace Presentacion
             // btnBuscar
             // 
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnBuscar.Enabled = false;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(729, 50);
+            this.btnBuscar.Location = new System.Drawing.Point(421, 55);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(83, 35);
+            this.btnBuscar.Size = new System.Drawing.Size(117, 29);
             this.btnBuscar.TabIndex = 33;
             this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // cboPrecio
             // 
@@ -500,10 +562,11 @@ namespace Presentacion
             this.cboPrecio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPrecio.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPrecio.FormattingEnabled = true;
-            this.cboPrecio.Location = new System.Drawing.Point(376, 55);
+            this.cboPrecio.Location = new System.Drawing.Point(29, 128);
             this.cboPrecio.Name = "cboPrecio";
             this.cboPrecio.Size = new System.Drawing.Size(130, 26);
             this.cboPrecio.TabIndex = 30;
+            this.cboPrecio.SelectedIndexChanged += new System.EventHandler(this.cboPrecio_SelectedIndexChanged);
             // 
             // cboCriterio
             // 
@@ -516,12 +579,13 @@ namespace Presentacion
             this.cboCriterio.Name = "cboCriterio";
             this.cboCriterio.Size = new System.Drawing.Size(128, 26);
             this.cboCriterio.TabIndex = 29;
+            this.cboCriterio.SelectedIndexChanged += new System.EventHandler(this.cboCriterio_SelectedIndexChanged);
             // 
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
             this.lblPrecio.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(372, 35);
+            this.lblPrecio.Location = new System.Drawing.Point(25, 106);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(66, 19);
             this.lblPrecio.TabIndex = 32;
@@ -537,67 +601,26 @@ namespace Presentacion
             this.lblCriterio.TabIndex = 31;
             this.lblCriterio.Text = "Criterio:";
             // 
-            // txtMinimo
+            // btnLimpiar
             // 
-            this.txtMinimo.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.txtMinimo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMinimo.Location = new System.Drawing.Point(538, 55);
-            this.txtMinimo.MaxLength = 50;
-            this.txtMinimo.Name = "txtMinimo";
-            this.txtMinimo.Size = new System.Drawing.Size(70, 27);
-            this.txtMinimo.TabIndex = 37;
-            // 
-            // txtMaximo
-            // 
-            this.txtMaximo.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.txtMaximo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaximo.Location = new System.Drawing.Point(626, 55);
-            this.txtMaximo.MaxLength = 50;
-            this.txtMaximo.Name = "txtMaximo";
-            this.txtMaximo.Size = new System.Drawing.Size(70, 27);
-            this.txtMaximo.TabIndex = 38;
-            // 
-            // lblMinimo
-            // 
-            this.lblMinimo.AutoSize = true;
-            this.lblMinimo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMinimo.Location = new System.Drawing.Point(534, 33);
-            this.lblMinimo.Name = "lblMinimo";
-            this.lblMinimo.Size = new System.Drawing.Size(74, 19);
-            this.lblMinimo.TabIndex = 39;
-            this.lblMinimo.Text = "Mínimo:";
-            // 
-            // lblMaximo
-            // 
-            this.lblMaximo.AutoSize = true;
-            this.lblMaximo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaximo.Location = new System.Drawing.Point(622, 33);
-            this.lblMaximo.Name = "lblMaximo";
-            this.lblMaximo.Size = new System.Drawing.Size(79, 19);
-            this.lblMaximo.TabIndex = 40;
-            this.lblMaximo.Text = "Máximo:";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 340);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 41);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "&Eliminar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnLimpiar.Enabled = false;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(421, 125);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(117, 29);
+            this.btnLimpiar.TabIndex = 41;
+            this.btnLimpiar.Text = "&Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
-            this.ClientSize = new System.Drawing.Size(1484, 861);
+            this.ClientSize = new System.Drawing.Size(1484, 961);
             this.Controls.Add(this.gbFiltroAvanzado);
             this.Controls.Add(this.panelLateral);
             this.Controls.Add(this.gbFiltroRapido);
@@ -611,8 +634,8 @@ namespace Presentacion
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.Menu;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1500, 900);
-            this.MinimumSize = new System.Drawing.Size(1500, 900);
+            this.MaximumSize = new System.Drawing.Size(1500, 1000);
+            this.MinimumSize = new System.Drawing.Size(1500, 1000);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TP Integrador Sebastián Gallego";
@@ -673,7 +696,8 @@ namespace Presentacion
         private System.Windows.Forms.Label lblMinimo;
         private System.Windows.Forms.TextBox txtMaximo;
         private System.Windows.Forms.TextBox txtMinimo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnFiltroAvanzado;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
 
