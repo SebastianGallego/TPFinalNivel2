@@ -56,6 +56,7 @@ using Presentacion;
 //  El boton de Filtro Avanzado del Panel queda retenido como una llave y no como un pulsador
 //  activando el grupo de Filtro Avanzado
 //  Al hacer clic en el datagrid se habilita la opcion para Modificar o Eliminar el producto
+//  En el filtro avanzado solo deja ingresar numeros en los textbox
 
 
 
@@ -181,7 +182,6 @@ namespace Presentacion
             {
                 listaArticulo = datos.listarArticulo();
                 dgvArticulos.DataSource = listaArticulo;
-                dgvArticulos.Columns["Precio"].DefaultCellStyle.Format = "N2";
                 
             }
             catch (Exception)
@@ -412,6 +412,9 @@ namespace Presentacion
         private void cboPrecio_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnLimpiar.Enabled = true;
+            txtMaximo.Text = "";
+            txtMinimo.Text = "";
+
 
 
             if (cboPrecio.SelectedIndex >= 0)
@@ -439,17 +442,17 @@ namespace Presentacion
                 btnBuscar.Enabled = false;
 
             }
-
+            txtMinimo.Focus();
 
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string criterioNombre;
-            string nombre;
-            string criterioPrecio;
-            decimal precioMinimo;
-            decimal precioMaximo;
+            string criterioNombre = "";
+            string nombre = "";
+            string criterioPrecio = "";
+            decimal precioMinimo = 0;
+            decimal precioMaximo = 0;
 
 
 
@@ -460,41 +463,24 @@ namespace Presentacion
             }
 
 
-            if (cboPrecio.SelectedIndex >= 0)    //Validacion de Solo Numeros
+            if (cboPrecio.SelectedIndex >= 0)   
             {
                 criterioPrecio = cboPrecio.SelectedItem.ToString();
 
-                if (esNumero(txtMinimo.Text))
-                {
-                    precioMinimo = decimal.Parse(txtMinimo.Text);
-                
-                    if (txtMaximo.Text != "")
-                    {
-                        if (esNumero(txtMaximo.Text))
-                        {
-                            precioMaximo = decimal.Parse(txtMaximo.Text);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ingrese un Número Máximo");
-                            txtMaximo.SelectionStart = 0;
-                            txtMaximo.SelectionLength = txtMaximo.Text.Length;
-                            txtMaximo.Focus();
-                        }
+                precioMinimo = decimal.Parse(txtMinimo.Text);
 
-                    }
-                }
-                else
+
+                if (criterioPrecio == "Entre")
                 {
-                    MessageBox.Show("Ingrese un Número Mínimo");
-                    txtMinimo.SelectionStart = 0;
-                    txtMinimo.SelectionLength = txtMinimo.Text.Length;
-                    txtMinimo.Focus();
-                }
+                    precioMaximo = decimal.Parse(txtMaximo.Text);
+                }    
+
+
+
             }
             
             ArticuloDatos datos = new ArticuloDatos();
-            dgvArticulos.DataSource = datos.filtroAvanzado(criterioNombre, nombre, criterioPrecio,precioMinimo, precioMaximo);
+            dgvArticulos.DataSource = datos.FiltroAvanzado(criterioNombre, nombre, criterioPrecio,precioMinimo, precioMaximo);
 
 
 
@@ -517,6 +503,7 @@ namespace Presentacion
         {
             btnLimpiar.Enabled = true;
 
+
             if ((cboPrecio.SelectedIndex >= 0 && txtMinimo.Text != "")|| (cboCriterio.SelectedIndex >= 0 && txtNombre.Text !=""))
             {
                 btnBuscar.Enabled = true;
@@ -526,6 +513,8 @@ namespace Presentacion
                 btnBuscar.Enabled = false;
 
             }
+
+            txtNombre.Focus();
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
@@ -567,37 +556,24 @@ namespace Presentacion
             cboPrecio.SelectedIndex = -1;
             cboCriterio.SelectedIndex = -1;
             btnLimpiar.Enabled = false;
+            ActualizarGrilla();
+
+
 
         }
 
 
-        static bool esNumero(string cadena)
+       
+
+        private void txtMinimo_KeyUp(object sender, KeyEventArgs e)
         {
-            foreach (char caracter in cadena)
-            {
-                if (!(char.IsNumber(caracter)))
-                {
-                    return false;
-                }
-
-            }
-            return true;
+            MetodosComunes.ValidarDecimal((TextBox) sender);
         }
 
-
-        static bool esTexto(string cadena)
+        private void txtMaximo_KeyUp(object sender, KeyEventArgs e)
         {
-            foreach (char caracter in cadena)
-            {
-                if (!(char.IsLetter(caracter)))
-                {
-                    return false;
-                }
-
-            }
-            return true;
+            MetodosComunes.ValidarDecimal((TextBox) sender);
         }
-
 
     }
 

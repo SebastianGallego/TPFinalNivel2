@@ -135,17 +135,48 @@ namespace AccesoADatos
         }
 
 
-        public List<Articulo> filtroAvanzado(string criterioNombre, string nombre, string criterioPrecio, decimal precioMinimo, decimal precioMaximo)
+        public List<Articulo> FiltroAvanzado(string criterioNombre, string nombre, string criterioPrecio, decimal precioMinimo, decimal precioMaximo)
         {
             List<Articulo> lista = new List<Articulo>();
             ConectarDatos datos = new ConectarDatos();
 
             try
             {
-                string consulta = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria,  Precio,ImagenUrl, C.Id IdCategoria, M.Id IdMarca From Articulos A, Categorias C, Marcas M where M.Id = A.IdMarca And C.Id = A.IdCategoria and ";
+                string consulta = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria,  Precio,ImagenUrl, C.Id IdCategoria, M.Id IdMarca From Articulos A, Categorias C, Marcas M where M.Id = A.IdMarca And C.Id = A.IdCategoria ";
 
 
-                //Armar la consulta con los comodines % y los criterios
+                switch (criterioPrecio)
+                {
+                    case "Igual a":
+                        consulta += " and Precio = " + precioMinimo;
+                        break;
+                    case "Mayor a":
+                        consulta += " and Precio > " + precioMinimo;
+                        break;
+                    case "Menor a":
+                        consulta += " and Precio < " + precioMinimo;
+                        break;
+                    case "Entre":
+                        consulta += " and Precio between " + precioMinimo + " and " + precioMaximo;     //between
+                        break;
+                    default:
+                        consulta += "";     
+                        break;
+                }
+
+
+                switch(criterioNombre)
+                    {
+                    case "Comienza con":
+                    consulta += " and Nombre like '" + nombre + "%' ";
+                    break;
+                        case "Termina con":
+                            consulta += " and Nombre like '%" + nombre + "'";
+                    break;
+                    default:
+                            consulta += " and Nombre like '%" + nombre + "%'";
+                    break;
+                }
 
 
 

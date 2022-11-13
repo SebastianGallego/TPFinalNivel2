@@ -65,6 +65,7 @@ namespace Presentacion
             this.btnFiltroAvanzado = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.gbFiltroAvanzado = new System.Windows.Forms.GroupBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.lblMaximo = new System.Windows.Forms.Label();
             this.lblMinimo = new System.Windows.Forms.Label();
             this.txtMaximo = new System.Windows.Forms.TextBox();
@@ -76,7 +77,6 @@ namespace Presentacion
             this.cboCriterio = new System.Windows.Forms.ComboBox();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.lblCriterio = new System.Windows.Forms.Label();
-            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.Menu.SuspendLayout();
@@ -480,6 +480,20 @@ namespace Presentacion
             this.gbFiltroAvanzado.TabStop = false;
             this.gbFiltroAvanzado.Text = "Filtro Avanzado";
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnLimpiar.Enabled = false;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(421, 125);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(117, 29);
+            this.btnLimpiar.TabIndex = 41;
+            this.btnLimpiar.Text = "&Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // lblMaximo
             // 
             this.lblMaximo.AutoSize = true;
@@ -509,6 +523,7 @@ namespace Presentacion
             this.txtMaximo.Name = "txtMaximo";
             this.txtMaximo.Size = new System.Drawing.Size(71, 27);
             this.txtMaximo.TabIndex = 38;
+            this.txtMaximo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMaximo_KeyUp);
             // 
             // txtMinimo
             // 
@@ -520,6 +535,7 @@ namespace Presentacion
             this.txtMinimo.Size = new System.Drawing.Size(70, 27);
             this.txtMinimo.TabIndex = 37;
             this.txtMinimo.TextChanged += new System.EventHandler(this.txtMinimo_TextChanged);
+            this.txtMinimo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMinimo_KeyUp);
             // 
             // txtNombre
             // 
@@ -600,20 +616,6 @@ namespace Presentacion
             this.lblCriterio.Size = new System.Drawing.Size(77, 19);
             this.lblCriterio.TabIndex = 31;
             this.lblCriterio.Text = "Criterio:";
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnLimpiar.Enabled = false;
-            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(421, 125);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(117, 29);
-            this.btnLimpiar.TabIndex = 41;
-            this.btnLimpiar.Text = "&Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // frmPrincipal
             // 
